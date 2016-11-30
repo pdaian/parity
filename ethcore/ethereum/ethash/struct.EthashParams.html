@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `EthashParams` struct in crate `ethcore`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, EthashParams">
+
+    <title>ethcore::ethereum::ethash::EthashParams - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>ethcore</a>::<wbr><a href='../index.html'>ethereum</a>::<wbr><a href='index.html'>ethash</a></p><script>window.sidebarCurrent = {name: 'EthashParams', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../index.html'>ethcore</a>::<wbr><a href='../index.html'>ethereum</a>::<wbr><a href='index.html'>ethash</a>::<wbr><a class='struct' href=''>EthashParams</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-3818' class='srclink' href='../../../src/ethcore/ethcore/src/ethereum/ethash.rs.html#34-79' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct EthashParams {
+    pub gas_limit_bound_divisor: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>,
+    pub minimum_difficulty: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>,
+    pub difficulty_bound_divisor: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>,
+    pub difficulty_increment_divisor: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub duration_limit: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub block_reward: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>,
+    pub registrar: <a class='type' href='../../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>,
+    pub homestead_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub dao_hardfork_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub dao_hardfork_beneficiary: <a class='type' href='../../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>,
+    pub dao_hardfork_accounts: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>&gt;,
+    pub difficulty_hardfork_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub difficulty_hardfork_bound_divisor: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>,
+    pub bomb_defuse_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub eip150_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub eip155_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub eip160_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub eip161abc_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub eip161d_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub ecip1010_pause_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub ecip1010_continue_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    pub max_code_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+}</pre><div class='docblock'><p>Ethash params.</p>
+</div><h2 class='fields'>Fields</h2><span id='structfield.gas_limit_bound_divisor' class='structfield'>
+                           <span id='gas_limit_bound_divisor.v' class='invisible'>
+                           <code>gas_limit_bound_divisor: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Gas limit divisor.</p>
+</div><span id='structfield.minimum_difficulty' class='structfield'>
+                           <span id='minimum_difficulty.v' class='invisible'>
+                           <code>minimum_difficulty: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Minimum difficulty.</p>
+</div><span id='structfield.difficulty_bound_divisor' class='structfield'>
+                           <span id='difficulty_bound_divisor.v' class='invisible'>
+                           <code>difficulty_bound_divisor: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Difficulty bound divisor.</p>
+</div><span id='structfield.difficulty_increment_divisor' class='structfield'>
+                           <span id='difficulty_increment_divisor.v' class='invisible'>
+                           <code>difficulty_increment_divisor: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Difficulty increment divisor.</p>
+</div><span id='structfield.duration_limit' class='structfield'>
+                           <span id='duration_limit.v' class='invisible'>
+                           <code>duration_limit: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Block duration.</p>
+</div><span id='structfield.block_reward' class='structfield'>
+                           <span id='block_reward.v' class='invisible'>
+                           <code>block_reward: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Block reward.</p>
+</div><span id='structfield.registrar' class='structfield'>
+                           <span id='registrar.v' class='invisible'>
+                           <code>registrar: <a class='type' href='../../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Namereg contract address.</p>
+</div><span id='structfield.homestead_transition' class='structfield'>
+                           <span id='homestead_transition.v' class='invisible'>
+                           <code>homestead_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Homestead transition block number.</p>
+</div><span id='structfield.dao_hardfork_transition' class='structfield'>
+                           <span id='dao_hardfork_transition.v' class='invisible'>
+                           <code>dao_hardfork_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>DAO hard-fork transition block (X).</p>
+</div><span id='structfield.dao_hardfork_beneficiary' class='structfield'>
+                           <span id='dao_hardfork_beneficiary.v' class='invisible'>
+                           <code>dao_hardfork_beneficiary: <a class='type' href='../../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>DAO hard-fork refund contract address (C).</p>
+</div><span id='structfield.dao_hardfork_accounts' class='structfield'>
+                           <span id='dao_hardfork_accounts.v' class='invisible'>
+                           <code>dao_hardfork_accounts: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>&gt;</code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>DAO hard-fork DAO accounts list (L)</p>
+</div><span id='structfield.difficulty_hardfork_transition' class='structfield'>
+                           <span id='difficulty_hardfork_transition.v' class='invisible'>
+                           <code>difficulty_hardfork_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Transition block for a change of difficulty params (currently just bound_divisor).</p>
+</div><span id='structfield.difficulty_hardfork_bound_divisor' class='structfield'>
+                           <span id='difficulty_hardfork_bound_divisor.v' class='invisible'>
+                           <code>difficulty_hardfork_bound_divisor: <a class='struct' href='../../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Difficulty param after the difficulty transition.</p>
+</div><span id='structfield.bomb_defuse_transition' class='structfield'>
+                           <span id='bomb_defuse_transition.v' class='invisible'>
+                           <code>bomb_defuse_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Block on which there is no additional difficulty from the exponential bomb.</p>
+</div><span id='structfield.eip150_transition' class='structfield'>
+                           <span id='eip150_transition.v' class='invisible'>
+                           <code>eip150_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Number of first block where EIP-150 rules begin.</p>
+</div><span id='structfield.eip155_transition' class='structfield'>
+                           <span id='eip155_transition.v' class='invisible'>
+                           <code>eip155_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Number of first block where EIP-155 rules begin.</p>
+</div><span id='structfield.eip160_transition' class='structfield'>
+                           <span id='eip160_transition.v' class='invisible'>
+                           <code>eip160_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Number of first block where EIP-160 rules begin.</p>
+</div><span id='structfield.eip161abc_transition' class='structfield'>
+                           <span id='eip161abc_transition.v' class='invisible'>
+                           <code>eip161abc_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Number of first block where EIP-161.abc begin.</p>
+</div><span id='structfield.eip161d_transition' class='structfield'>
+                           <span id='eip161d_transition.v' class='invisible'>
+                           <code>eip161d_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Number of first block where EIP-161.d begins.</p>
+</div><span id='structfield.ecip1010_pause_transition' class='structfield'>
+                           <span id='ecip1010_pause_transition.v' class='invisible'>
+                           <code>ecip1010_pause_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Number of first block where ECIP-1010 begins.</p>
+</div><span id='structfield.ecip1010_continue_transition' class='structfield'>
+                           <span id='ecip1010_continue_transition.v' class='invisible'>
+                           <code>ecip1010_continue_transition: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Number of first block where ECIP-1010 ends.</p>
+</div><span id='structfield.max_code_size' class='structfield'>
+                           <span id='max_code_size.v' class='invisible'>
+                           <code>max_code_size: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Maximum amount of code that can be deploying into a contract.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../../ethcore/ethereum/ethash/struct.EthashParams.html' title='ethcore::ethereum::ethash::EthashParams'>EthashParams</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3841' class='srclink' href='../../../src/ethcore/ethcore/src/ethereum/ethash.rs.html#33' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../../../ethcore/ethereum/ethash/struct.EthashParams.html' title='ethcore::ethereum::ethash::EthashParams'>EthashParams</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3868' class='srclink' href='../../../src/ethcore/ethcore/src/ethereum/ethash.rs.html#33' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class='method'><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../../../ethcore/ethereum/ethash/struct.EthashParams.html' title='ethcore::ethereum::ethash::EthashParams'>EthashParams</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='struct' href='../../../ethcore/ethereum/ethash/struct.EthashParams.html' title='ethcore::ethereum::ethash::EthashParams'>EthashParams</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;EthashParams&gt; for <a class='struct' href='../../../ethcore/ethereum/ethash/struct.EthashParams.html' title='ethcore::ethereum::ethash::EthashParams'>EthashParams</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3963' class='srclink' href='../../../src/ethcore/ethcore/src/ethereum/ethash.rs.html#81-108' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from' class='method'><span id='from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(p: EthashParams) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "ethcore";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

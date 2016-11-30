@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `traits` mod in crate `ethcore_rpc`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, traits">
+
+    <title>ethcore_rpc::v1::traits - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>ethcore_rpc</a>::<wbr><a href='../index.html'>v1</a></p><script>window.sidebarCurrent = {name: 'traits', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../../index.html'>ethcore_rpc</a>::<wbr><a href='../index.html'>v1</a>::<wbr><a class='mod' href=''>traits</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-3712' class='srclink' href='../../../src/ethcore_rpc/rpc/src/v1/traits/mod.rs.html#17-43' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Ethereum rpc interfaces.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use self::<a class='mod'
+                                       href='./web3/index.html'>web3</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/web3/trait.Web3.html' title='ethcore_rpc::v1::traits::web3::Web3'>Web3</a>;</code></td></tr><tr><td><code>pub use self::eth::{<a class='trait' href='../../../ethcore_rpc/v1/traits/eth/trait.Eth.html' title='ethcore_rpc::v1::traits::eth::Eth'>Eth</a>, <a class='trait' href='../../../ethcore_rpc/v1/traits/eth/trait.EthFilter.html' title='ethcore_rpc::v1::traits::eth::EthFilter'>EthFilter</a>};</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./eth_signing/index.html'>eth_signing</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html' title='ethcore_rpc::v1::traits::eth_signing::EthSigning'>EthSigning</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./net/index.html'>net</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/net/trait.Net.html' title='ethcore_rpc::v1::traits::net::Net'>Net</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./parity/index.html'>parity</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/parity/trait.Parity.html' title='ethcore_rpc::v1::traits::parity::Parity'>Parity</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./parity_accounts/index.html'>parity_accounts</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/parity_accounts/trait.ParityAccounts.html' title='ethcore_rpc::v1::traits::parity_accounts::ParityAccounts'>ParityAccounts</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./parity_set/index.html'>parity_set</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/parity_set/trait.ParitySet.html' title='ethcore_rpc::v1::traits::parity_set::ParitySet'>ParitySet</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./parity_signing/index.html'>parity_signing</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html' title='ethcore_rpc::v1::traits::parity_signing::ParitySigning'>ParitySigning</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./personal/index.html'>personal</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/personal/trait.Personal.html' title='ethcore_rpc::v1::traits::personal::Personal'>Personal</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./signer/index.html'>signer</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/signer/trait.Signer.html' title='ethcore_rpc::v1::traits::signer::Signer'>Signer</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./traces/index.html'>traces</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/traces/trait.Traces.html' title='ethcore_rpc::v1::traits::traces::Traces'>Traces</a>;</code></td></tr><tr><td><code>pub use self::<a class='mod'
+                                       href='./rpc/index.html'>rpc</a>::<a class='trait' href='../../../ethcore_rpc/v1/traits/rpc/trait.Rpc.html' title='ethcore_rpc::v1::traits::rpc::Rpc'>Rpc</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='eth/index.html'
+                                  title='ethcore_rpc::v1::traits::eth'>eth</a></td>
+                           <td class='docblock-short'>
+                                <p>Eth rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='eth_signing/index.html'
+                                  title='ethcore_rpc::v1::traits::eth_signing'>eth_signing</a></td>
+                           <td class='docblock-short'>
+                                <p>Eth rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='net/index.html'
+                                  title='ethcore_rpc::v1::traits::net'>net</a></td>
+                           <td class='docblock-short'>
+                                <p>Net rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='parity/index.html'
+                                  title='ethcore_rpc::v1::traits::parity'>parity</a></td>
+                           <td class='docblock-short'>
+                                <p>Parity-specific rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='parity_accounts/index.html'
+                                  title='ethcore_rpc::v1::traits::parity_accounts'>parity_accounts</a></td>
+                           <td class='docblock-short'>
+                                <p>Parity Accounts-related rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='parity_set/index.html'
+                                  title='ethcore_rpc::v1::traits::parity_set'>parity_set</a></td>
+                           <td class='docblock-short'>
+                                <p>Parity-specific rpc interface for operations altering the settings.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='parity_signing/index.html'
+                                  title='ethcore_rpc::v1::traits::parity_signing'>parity_signing</a></td>
+                           <td class='docblock-short'>
+                                <p>ParitySigning rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='personal/index.html'
+                                  title='ethcore_rpc::v1::traits::personal'>personal</a></td>
+                           <td class='docblock-short'>
+                                <p>Personal rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='rpc/index.html'
+                                  title='ethcore_rpc::v1::traits::rpc'>rpc</a></td>
+                           <td class='docblock-short'>
+                                <p>RPC interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='signer/index.html'
+                                  title='ethcore_rpc::v1::traits::signer'>signer</a></td>
+                           <td class='docblock-short'>
+                                <p>Parity Signer-related rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='traces/index.html'
+                                  title='ethcore_rpc::v1::traits::traces'>traces</a></td>
+                           <td class='docblock-short'>
+                                <p>Traces specific rpc interface.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='web3/index.html'
+                                  title='ethcore_rpc::v1::traits::web3'>web3</a></td>
+                           <td class='docblock-short'>
+                                <p>Web3 rpc interface.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "ethcore_rpc";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

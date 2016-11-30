@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["ParityAccounts","Personal Parity rpc interface."]]});

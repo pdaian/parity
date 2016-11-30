@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["ChainNotify","Represents what has to be handled by actor listening to chain events"]]});

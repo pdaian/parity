@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["is_major_importing","Check if client is during major sync or during block import."]]});

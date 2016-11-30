@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `LocalTransactionStatus` enum in crate `ethcore_rpc`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, LocalTransactionStatus">
+
+    <title>ethcore_rpc::v1::types::LocalTransactionStatus - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>ethcore_rpc</a>::<wbr><a href='../index.html'>v1</a>::<wbr><a href='index.html'>types</a></p><script>window.sidebarCurrent = {name: 'LocalTransactionStatus', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>ethcore_rpc</a>::<wbr><a href='../index.html'>v1</a>::<wbr><a href='index.html'>types</a>::<wbr><a class='enum' href=''>LocalTransactionStatus</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-7490' class='srclink' href='../../../src/ethcore_rpc/home/travis/build/ethcore/parity/target/debug/build/ethcore-rpc-e205ee416077d332/out/mod.rs.html#2576-2598' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum LocalTransactionStatus {
+    Pending,
+    Future,
+    Mined(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>),
+    Dropped(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>),
+    Replaced(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>,&nbsp;<a class='struct' href='../../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>U256</a>,&nbsp;<a class='struct' href='../../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>H256</a>),
+    Rejected(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    Invalid(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>),
+}</pre><div class='docblock'><p>Local Transaction Status</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.Pending' class='variant'><span id='Pending.v' class='invisible'><code>Pending</code></span></span><div class='docblock'><p>Transaction is pending</p>
+</div><span id='variant.Future' class='variant'><span id='Future.v' class='invisible'><code>Future</code></span></span><div class='docblock'><p>Transaction is in future part of the queue</p>
+</div><span id='variant.Mined' class='variant'><span id='Mined.v' class='invisible'><code>Mined(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>)</code></span></span><div class='docblock'><p>Transaction is already mined.</p>
+</div><span id='variant.Dropped' class='variant'><span id='Dropped.v' class='invisible'><code>Dropped(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>)</code></span></span><div class='docblock'><p>Transaction was dropped because of limit.</p>
+</div><span id='variant.Replaced' class='variant'><span id='Replaced.v' class='invisible'><code>Replaced(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>,&nbsp;<a class='struct' href='../../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>U256</a>,&nbsp;<a class='struct' href='../../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>H256</a>)</code></span></span><div class='docblock'><p>Transaction was replaced by transaction with higher gas price.</p>
+</div><span id='variant.Rejected' class='variant'><span id='Rejected.v' class='invisible'><code>Rejected(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>)</code></span></span><div class='docblock'><p>Transaction never got into the queue.</p>
+</div><span id='variant.Invalid' class='variant'><span id='Invalid.v' class='invisible'><code>Invalid(<a class='struct' href='../../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>)</code></span></span><div class='docblock'><p>Transaction is invalid.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../ethcore_rpc/v1/types/enum.LocalTransactionStatus.html' title='ethcore_rpc::v1::types::LocalTransactionStatus'>LocalTransactionStatus</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-7506' class='srclink' href='../../../src/ethcore_rpc/home/travis/build/ethcore/parity/target/debug/build/ethcore-rpc-e205ee416077d332/out/mod.rs.html#2575' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://docs.serde.rs/serde/ser/trait.Serialize.html' title='serde::ser::Serialize'>Serialize</a> for <a class='enum' href='../../../ethcore_rpc/v1/types/enum.LocalTransactionStatus.html' title='ethcore_rpc::v1::types::LocalTransactionStatus'>LocalTransactionStatus</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-7525' class='srclink' href='../../../src/ethcore_rpc/home/travis/build/ethcore/parity/target/debug/build/ethcore-rpc-e205ee416077d332/out/mod.rs.html#2599-2661' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.serialize' class='method'><span id='serialize.v' class='invisible'><code>fn <a href='https://docs.serde.rs/serde/ser/trait.Serialize.html#tymethod.serialize' class='fnname'>serialize</a>&lt;S&gt;(&amp;self, serializer: &amp;mut S) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;S::Error&gt; <span class='where'>where S: <a class='trait' href='https://docs.serde.rs/serde/ser/trait.Serializer.html' title='serde::ser::Serializer'>Serializer</a></span></code></span></h4>
+<div class='docblock'><p>Serializes this value into this serializer.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='enum' href='../../../ethcore/miner/local_transactions/enum.Status.html' title='ethcore::miner::local_transactions::Status'>LocalTransactionStatus</a>&gt; for <a class='enum' href='../../../ethcore_rpc/v1/types/enum.LocalTransactionStatus.html' title='ethcore_rpc::v1::types::LocalTransactionStatus'>LocalTransactionStatus</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-7639' class='srclink' href='../../../src/ethcore_rpc/home/travis/build/ethcore/parity/target/debug/build/ethcore-rpc-e205ee416077d332/out/mod.rs.html#2766-2783' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from' class='method'><span id='from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(s: <a class='enum' href='../../../ethcore/miner/local_transactions/enum.Status.html' title='ethcore::miner::local_transactions::Status'>LocalTransactionStatus</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "ethcore_rpc";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

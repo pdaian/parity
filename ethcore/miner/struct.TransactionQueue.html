@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `TransactionQueue` struct in crate `ethcore`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, TransactionQueue">
+
+    <title>ethcore::miner::TransactionQueue - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>ethcore</a>::<wbr><a href='index.html'>miner</a></p><script>window.sidebarCurrent = {name: 'TransactionQueue', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>ethcore</a>::<wbr><a href='index.html'>miner</a>::<wbr><a class='struct' href=''>TransactionQueue</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-7765' class='srclink' href='../../src/ethcore/ethcore/src/miner/transaction_queue.rs.html#486-505' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct TransactionQueue { /* fields omitted */ }</pre><div class='docblock'><p><code>TransactionQueue</code> implementation</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../ethcore/miner/struct.TransactionQueue.html' title='ethcore::miner::TransactionQueue'>TransactionQueue</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-7777' class='srclink' href='../../src/ethcore/ethcore/src/miner/transaction_queue.rs.html#513-1186' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(strategy: <a class='enum' href='../../ethcore/miner/enum.PrioritizationStrategy.html' title='ethcore::miner::PrioritizationStrategy'>PrioritizationStrategy</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Creates new instance of this Queue</p>
+</div><h4 id='method.with_limits' class='method'><span id='with_limits.v' class='invisible'><code>fn <a href='#method.with_limits' class='fnname'>with_limits</a>(strategy: <a class='enum' href='../../ethcore/miner/enum.PrioritizationStrategy.html' title='ethcore::miner::PrioritizationStrategy'>PrioritizationStrategy</a>, limit: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, gas_limit: <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>, tx_gas_limit: <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Create new instance of this Queue with specified limits</p>
+</div><h4 id='method.set_limit' class='method'><span id='set_limit.v' class='invisible'><code>fn <a href='#method.set_limit' class='fnname'>set_limit</a>(&amp;mut self, limit: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></h4>
+<div class='docblock'><p>Set the new limit for <code>current</code> and <code>future</code> queue.</p>
+</div><h4 id='method.limit' class='method'><span id='limit.v' class='invisible'><code>fn <a href='#method.limit' class='fnname'>limit</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code></span></h4>
+<div class='docblock'><p>Returns current limit of transactions in the queue.</p>
+</div><h4 id='method.minimal_gas_price' class='method'><span id='minimal_gas_price.v' class='invisible'><code>fn <a href='#method.minimal_gas_price' class='fnname'>minimal_gas_price</a>(&amp;self) -&gt; &amp;<a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></code></span></h4>
+<div class='docblock'><p>Get the minimal gas price.</p>
+</div><h4 id='method.set_minimal_gas_price' class='method'><span id='set_minimal_gas_price.v' class='invisible'><code>fn <a href='#method.set_minimal_gas_price' class='fnname'>set_minimal_gas_price</a>(&amp;mut self, min_gas_price: <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>)</code></span></h4>
+<div class='docblock'><p>Sets new gas price threshold for incoming transactions.
+Any transaction already imported to the queue is not affected.</p>
+</div><h4 id='method.effective_minimum_gas_price' class='method'><span id='effective_minimum_gas_price.v' class='invisible'><code>fn <a href='#method.effective_minimum_gas_price' class='fnname'>effective_minimum_gas_price</a>(&amp;self) -&gt; <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></code></span></h4>
+<div class='docblock'><p>Get one more than the lowest gas price in the queue iff the pool is
+full, otherwise 0.</p>
+</div><h4 id='method.set_gas_limit' class='method'><span id='set_gas_limit.v' class='invisible'><code>fn <a href='#method.set_gas_limit' class='fnname'>set_gas_limit</a>(&amp;mut self, gas_limit: <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>)</code></span></h4>
+<div class='docblock'><p>Sets new gas limit. Transactions with gas slightly (<code>GAS_LIMIT_HYSTERESIS</code>) above the limit won&#39;t be imported.
+Any transaction already imported to the queue is not affected.</p>
+</div><h4 id='method.set_total_gas_limit' class='method'><span id='set_total_gas_limit.v' class='invisible'><code>fn <a href='#method.set_total_gas_limit' class='fnname'>set_total_gas_limit</a>(&amp;mut self, gas_limit: <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>)</code></span></h4>
+<div class='docblock'><p>Sets new total gas limit.</p>
+</div><h4 id='method.set_tx_gas_limit' class='method'><span id='set_tx_gas_limit.v' class='invisible'><code>fn <a href='#method.set_tx_gas_limit' class='fnname'>set_tx_gas_limit</a>(&amp;mut self, limit: <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>)</code></span></h4>
+<div class='docblock'><p>Set the new limit for the amount of gas any individual transaction may have.
+Any transaction already imported to the queue is not affected.</p>
+</div><h4 id='method.status' class='method'><span id='status.v' class='invisible'><code>fn <a href='#method.status' class='fnname'>status</a>(&amp;self) -&gt; TransactionQueueStatus</code></span></h4>
+<div class='docblock'><p>Returns current status for this queue</p>
+</div><h4 id='method.add' class='method'><span id='add.v' class='invisible'><code>fn <a href='#method.add' class='fnname'>add</a>&lt;F,&nbsp;G&gt;(&amp;mut self, tx: <a class='struct' href='../../ethcore/transaction/struct.SignedTransaction.html' title='ethcore::transaction::SignedTransaction'>SignedTransaction</a>, origin: <a class='enum' href='../../ethcore/miner/enum.TransactionOrigin.html' title='ethcore::miner::TransactionOrigin'>TransactionOrigin</a>, fetch_account: &amp;F, gas_estimator: &amp;G) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../../ethcore/client/enum.TransactionImportResult.html' title='ethcore::client::TransactionImportResult'>TransactionImportResult</a>,&nbsp;<a class='enum' href='../../ethcore/error/enum.Error.html' title='ethcore::error::Error'>Error</a>&gt; <span class='where'>where F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(&amp;<a class='type' href='../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>) -&gt; <a class='struct' href='../../ethcore/miner/struct.AccountDetails.html' title='ethcore::miner::AccountDetails'>AccountDetails</a>, G: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(&amp;<a class='struct' href='../../ethcore/transaction/struct.SignedTransaction.html' title='ethcore::transaction::SignedTransaction'>SignedTransaction</a>) -&gt; <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a></span></code></span></h4>
+<div class='docblock'><p>Add signed transaction to queue to be verified and imported.</p>
+
+<p>NOTE fetch_account and gas_estimator should be cheap to compute
+otherwise it might open up an attack vector.</p>
+</div><h4 id='method.remove_all' class='method'><span id='remove_all.v' class='invisible'><code>fn <a href='#method.remove_all' class='fnname'>remove_all</a>(&amp;mut self, sender: <a class='type' href='../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>, client_nonce: <a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>)</code></span></h4>
+<div class='docblock'><p>Removes all transactions from particular sender up to (excluding) given client (state) nonce.
+Client (State) Nonce = next valid nonce for this sender.</p>
+</div><h4 id='method.penalize' class='method'><span id='penalize.v' class='invisible'><code>fn <a href='#method.penalize' class='fnname'>penalize</a>(&amp;mut self, transaction_hash: &amp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>)</code></span></h4>
+<div class='docblock'><p>Penalize transactions from sender of transaction with given hash.
+I.e. it should change the priority of the transaction in the queue.</p>
+
+<p>NOTE: We need to penalize all transactions from particular sender
+to avoid breaking invariants in queue (ordered by nonces).
+Consecutive transactions from this sender would fail otherwise (because of invalid nonce).</p>
+</div><h4 id='method.remove_invalid' class='method'><span id='remove_invalid.v' class='invisible'><code>fn <a href='#method.remove_invalid' class='fnname'>remove_invalid</a>&lt;T&gt;(&amp;mut self, transaction_hash: &amp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>, fetch_account: &amp;T) <span class='where'>where T: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(&amp;<a class='type' href='../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>) -&gt; <a class='struct' href='../../ethcore/miner/struct.AccountDetails.html' title='ethcore::miner::AccountDetails'>AccountDetails</a></span></code></span></h4>
+<div class='docblock'><p>Removes invalid transaction identified by hash from queue.
+Assumption is that this transaction nonce is not related to client nonce,
+so transactions left in queue are processed according to client nonce.</p>
+
+<p>If gap is introduced marks subsequent transactions as future</p>
+</div><h4 id='method.top_transactions' class='method'><span id='top_transactions.v' class='invisible'><code>fn <a href='#method.top_transactions' class='fnname'>top_transactions</a>(&amp;self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../ethcore/transaction/struct.SignedTransaction.html' title='ethcore::transaction::SignedTransaction'>SignedTransaction</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns top transactions from the queue ordered by priority.</p>
+</div><h4 id='method.local_transactions' class='method'><span id='local_transactions.v' class='invisible'><code>fn <a href='#method.local_transactions' class='fnname'>local_transactions</a>(&amp;self) -&gt; &amp;LinkedHashMap&lt;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>,&nbsp;<a class='enum' href='../../ethcore/miner/enum.LocalTransactionStatus.html' title='ethcore::miner::LocalTransactionStatus'>LocalTransactionStatus</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns local transactions (some of them might not be part of the queue anymore).</p>
+</div><h4 id='method.pending_hashes' class='method'><span id='pending_hashes.v' class='invisible'><code>fn <a href='#method.pending_hashes' class='fnname'>pending_hashes</a>(&amp;self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns hashes of all transactions from current, ordered by priority.</p>
+</div><h4 id='method.has_local_pending_transactions' class='method'><span id='has_local_pending_transactions.v' class='invisible'><code>fn <a href='#method.has_local_pending_transactions' class='fnname'>has_local_pending_transactions</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>Returns true if there is at least one local transaction pending</p>
+</div><h4 id='method.find' class='method'><span id='find.v' class='invisible'><code>fn <a href='#method.find' class='fnname'>find</a>(&amp;self, hash: &amp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../ethcore/transaction/struct.SignedTransaction.html' title='ethcore::transaction::SignedTransaction'>SignedTransaction</a>&gt;</code></span></h4>
+<div class='docblock'><p>Finds transaction in the queue by hash (if any)</p>
+</div><h4 id='method.clear' class='method'><span id='clear.v' class='invisible'><code>fn <a href='#method.clear' class='fnname'>clear</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Removes all elements (in any state) from the queue</p>
+</div><h4 id='method.last_nonce' class='method'><span id='last_nonce.v' class='invisible'><code>fn <a href='#method.last_nonce' class='fnname'>last_nonce</a>(&amp;self, address: &amp;<a class='type' href='../../ethcore_util/type.Address.html' title='ethcore_util::Address'>Address</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../ethcore_bigint/uint/struct.U256.html' title='ethcore_bigint::uint::U256'>U256</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns highest transaction nonce for given address.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> for <a class='struct' href='../../ethcore/miner/struct.TransactionQueue.html' title='ethcore::miner::TransactionQueue'>TransactionQueue</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-7775' class='srclink' href='../../src/ethcore/ethcore/src/miner/transaction_queue.rs.html#507-511' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class='method'><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "ethcore";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

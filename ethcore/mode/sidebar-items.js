@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Mode","IPC-capable shadow-type for `client::config::Mode`"]],"struct":[["Duration","A duration type to represent a span of time, typically used for system timeouts."]]});

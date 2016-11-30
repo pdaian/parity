@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Error` enum in crate `ethcore`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Error">
+
+    <title>ethcore::snapshot::Error - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>ethcore</a>::<wbr><a href='index.html'>snapshot</a></p><script>window.sidebarCurrent = {name: 'Error', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>ethcore</a>::<wbr><a href='index.html'>snapshot</a>::<wbr><a class='enum' href=''>Error</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-9183' class='srclink' href='../../src/ethcore/ethcore/src/snapshot/error.rs.html#29-56' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum Error {
+    InvalidStartingBlock(<a class='enum' href='../../ethcore/client/enum.BlockID.html' title='ethcore::client::BlockID'>BlockID</a>),
+    BlockNotFound(<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>),
+    IncompleteChain,
+    WrongStateRoot(<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>,&nbsp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>),
+    WrongBlockHash(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,&nbsp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>,&nbsp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>),
+    TooManyBlocks(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>),
+    OldBlockPrunedDB,
+    MissingCode(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>&gt;),
+    UnrecognizedCodeState(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>),
+    RestorationAborted,
+    Trie(<a class='enum' href='../../ethcore_util/trie/enum.TrieError.html' title='ethcore_util::trie::TrieError'>TrieError</a>),
+    Decoder(<a class='enum' href='../../rlp/rlperrors/enum.DecoderError.html' title='rlp::rlperrors::DecoderError'>DecoderError</a>),
+    Io(<a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>),
+}</pre><div class='docblock'><p>Snapshot-related errors.</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.InvalidStartingBlock' class='variant'><span id='InvalidStartingBlock.v' class='invisible'><code>InvalidStartingBlock(<a class='enum' href='../../ethcore/client/enum.BlockID.html' title='ethcore::client::BlockID'>BlockID</a>)</code></span></span><div class='docblock'><p>Invalid starting block for snapshot.</p>
+</div><span id='variant.BlockNotFound' class='variant'><span id='BlockNotFound.v' class='invisible'><code>BlockNotFound(<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>)</code></span></span><div class='docblock'><p>Block not found.</p>
+</div><span id='variant.IncompleteChain' class='variant'><span id='IncompleteChain.v' class='invisible'><code>IncompleteChain</code></span></span><div class='docblock'><p>Incomplete chain.</p>
+</div><span id='variant.WrongStateRoot' class='variant'><span id='WrongStateRoot.v' class='invisible'><code>WrongStateRoot(<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>,&nbsp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>)</code></span></span><div class='docblock'><p>Best block has wrong state root.</p>
+</div><span id='variant.WrongBlockHash' class='variant'><span id='WrongBlockHash.v' class='invisible'><code>WrongBlockHash(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,&nbsp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>,&nbsp;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>)</code></span></span><div class='docblock'><p>Wrong block hash.</p>
+</div><span id='variant.TooManyBlocks' class='variant'><span id='TooManyBlocks.v' class='invisible'><code>TooManyBlocks(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></span></span><div class='docblock'><p>Too many blocks contained within the snapshot.</p>
+</div><span id='variant.OldBlockPrunedDB' class='variant'><span id='OldBlockPrunedDB.v' class='invisible'><code>OldBlockPrunedDB</code></span></span><div class='docblock'><p>Old starting block in a pruned database.</p>
+</div><span id='variant.MissingCode' class='variant'><span id='MissingCode.v' class='invisible'><code>MissingCode(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>&gt;)</code></span></span><div class='docblock'><p>Missing code.</p>
+</div><span id='variant.UnrecognizedCodeState' class='variant'><span id='UnrecognizedCodeState.v' class='invisible'><code>UnrecognizedCodeState(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></span><div class='docblock'><p>Unrecognized code encoding.</p>
+</div><span id='variant.RestorationAborted' class='variant'><span id='RestorationAborted.v' class='invisible'><code>RestorationAborted</code></span></span><div class='docblock'><p>Restoration aborted.</p>
+</div><span id='variant.Trie' class='variant'><span id='Trie.v' class='invisible'><code>Trie(<a class='enum' href='../../ethcore_util/trie/enum.TrieError.html' title='ethcore_util::trie::TrieError'>TrieError</a>)</code></span></span><div class='docblock'><p>Trie error.</p>
+</div><span id='variant.Decoder' class='variant'><span id='Decoder.v' class='invisible'><code>Decoder(<a class='enum' href='../../rlp/rlperrors/enum.DecoderError.html' title='rlp::rlperrors::DecoderError'>DecoderError</a>)</code></span></span><div class='docblock'><p>Decoder error.</p>
+</div><span id='variant.Io' class='variant'><span id='Io.v' class='invisible'><code>Io(<a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>)</code></span></span><div class='docblock'><p>Io error.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../ethcore/snapshot/enum.Error.html' title='ethcore::snapshot::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-9211' class='srclink' href='../../src/ethcore/ethcore/src/snapshot/error.rs.html#28' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='enum' href='../../ethcore/snapshot/enum.Error.html' title='ethcore::snapshot::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-9242' class='srclink' href='../../src/ethcore/ethcore/src/snapshot/error.rs.html#58-78' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class='method'><span id='fmt.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>&gt; for <a class='enum' href='../../ethcore/snapshot/enum.Error.html' title='ethcore::snapshot::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-9281' class='srclink' href='../../src/ethcore/ethcore/src/snapshot/error.rs.html#80-84' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from' class='method'><span id='from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(err: <a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='enum' href='../../ethcore_util/trie/enum.TrieError.html' title='ethcore_util::trie::TrieError'>TrieError</a>&gt; for <a class='enum' href='../../ethcore/snapshot/enum.Error.html' title='ethcore::snapshot::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-9284' class='srclink' href='../../src/ethcore/ethcore/src/snapshot/error.rs.html#86-90' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from-1' class='method'><span id='from.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(err: <a class='enum' href='../../ethcore_util/trie/enum.TrieError.html' title='ethcore_util::trie::TrieError'>TrieError</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='enum' href='../../rlp/rlperrors/enum.DecoderError.html' title='rlp::rlperrors::DecoderError'>DecoderError</a>&gt; for <a class='enum' href='../../ethcore/snapshot/enum.Error.html' title='ethcore::snapshot::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-9287' class='srclink' href='../../src/ethcore/ethcore/src/snapshot/error.rs.html#92-96' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from-2' class='method'><span id='from.v-2' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(err: <a class='enum' href='../../rlp/rlperrors/enum.DecoderError.html' title='rlp::rlperrors::DecoderError'>DecoderError</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;E&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;E&gt;&gt; for <a class='enum' href='../../ethcore/snapshot/enum.Error.html' title='ethcore::snapshot::Error'>Error</a> <span class='where'>where <a class='enum' href='../../ethcore/snapshot/enum.Error.html' title='ethcore::snapshot::Error'>Error</a>: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;E&gt;</span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-9290' class='srclink' href='../../src/ethcore/ethcore/src/snapshot/error.rs.html#98-102' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from-3' class='method'><span id='from.v-3' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(err: <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;E&gt;) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "ethcore";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

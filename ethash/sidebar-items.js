@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["ETHASH_EPOCH_LENGTH",""]],"fn":[["quick_get_difficulty","Difficulty quick check for POW preverification"],["slow_get_seedhash",""]],"struct":[["EthashManager","Light/Full cache manager."],["ProofOfWork","Computation result"],["SeedHashCompute",""]],"type":[["H256",""]]});

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `TestSyncProvider` struct in crate `ethcore_rpc`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, TestSyncProvider">
+
+    <title>ethcore_rpc::v1::tests::helpers::TestSyncProvider - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../../index.html'>ethcore_rpc</a>::<wbr><a href='../../index.html'>v1</a>::<wbr><a href='../index.html'>tests</a>::<wbr><a href='index.html'>helpers</a></p><script>window.sidebarCurrent = {name: 'TestSyncProvider', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../../../index.html'>ethcore_rpc</a>::<wbr><a href='../../index.html'>v1</a>::<wbr><a href='../index.html'>tests</a>::<wbr><a href='index.html'>helpers</a>::<wbr><a class='struct' href=''>TestSyncProvider</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-4828' class='srclink' href='../../../../src/ethcore_rpc/rpc/src/v1/tests/helpers/sync_provider.rs.html#32-35' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct TestSyncProvider {
+    pub status: RwLock&lt;<a class='struct' href='../../../../ethsync/chain/struct.SyncStatus.html' title='ethsync::chain::SyncStatus'>SyncStatus</a>&gt;,
+}</pre><div class='docblock'><p>Test sync provider.</p>
+</div><h2 class='fields'>Fields</h2><span id='structfield.status' class='structfield'>
+                           <span id='status.v' class='invisible'>
+                           <code>status: RwLock&lt;<a class='struct' href='../../../../ethsync/chain/struct.SyncStatus.html' title='ethsync::chain::SyncStatus'>SyncStatus</a>&gt;</code>
+                           </span></span><span class='stab '></span><div class='docblock'><p>Sync status.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../../../ethcore_rpc/v1/tests/helpers/struct.TestSyncProvider.html' title='ethcore_rpc::v1::tests::helpers::TestSyncProvider'>TestSyncProvider</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4830' class='srclink' href='../../../../src/ethcore_rpc/rpc/src/v1/tests/helpers/sync_provider.rs.html#37-66' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(config: <a class='struct' href='../../../../ethcore_rpc/v1/tests/helpers/struct.Config.html' title='ethcore_rpc::v1::tests::helpers::Config'>Config</a>) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Creates new sync provider.</p>
+</div><h4 id='method.increase_imported_block_number' class='method'><span id='increase_imported_block_number.v' class='invisible'><code>fn <a href='#method.increase_imported_block_number' class='fnname'>increase_imported_block_number</a>(&amp;self, count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></span></h4>
+<div class='docblock'><p>Simulate importing blocks.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='../../../../ethsync/api/trait.SyncProvider.html' title='ethsync::api::SyncProvider'>SyncProvider</a> for <a class='struct' href='../../../../ethcore_rpc/v1/tests/helpers/struct.TestSyncProvider.html' title='ethcore_rpc::v1::tests::helpers::TestSyncProvider'>TestSyncProvider</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-4838' class='srclink' href='../../../../src/ethcore_rpc/rpc/src/v1/tests/helpers/sync_provider.rs.html#68-118' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.status' class='method'><span id='status.v-1' class='invisible'><code>fn <a href='../../../../ethsync/api/trait.SyncProvider.html#tymethod.status' class='fnname'>status</a>(&amp;self) -&gt; <a class='struct' href='../../../../ethsync/chain/struct.SyncStatus.html' title='ethsync::chain::SyncStatus'>SyncStatus</a></code></span></h4>
+<div class='docblock'><p>Get sync status</p>
+</div><h4 id='method.peers' class='method'><span id='peers.v' class='invisible'><code>fn <a href='../../../../ethsync/api/trait.SyncProvider.html#tymethod.peers' class='fnname'>peers</a>(&amp;self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../../../ethsync/api/struct.PeerInfo.html' title='ethsync::api::PeerInfo'>PeerInfo</a>&gt;</code></span></h4>
+<div class='docblock'><p>Get peers information</p>
+</div><h4 id='method.enode' class='method'><span id='enode.v' class='invisible'><code>fn <a href='../../../../ethsync/api/trait.SyncProvider.html#tymethod.enode' class='fnname'>enode</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code></span></h4>
+<div class='docblock'><p>Get the enode if available.</p>
+</div><h4 id='method.transactions_stats' class='method'><span id='transactions_stats.v' class='invisible'><code>fn <a href='../../../../ethsync/api/trait.SyncProvider.html#tymethod.transactions_stats' class='fnname'>transactions_stats</a>(&amp;self) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='../../../../ethcore_bigint/hash/struct.H256.html' title='ethcore_bigint::hash::H256'>H256</a>,&nbsp;<a class='struct' href='../../../../ethsync/api/struct.TransactionStats.html' title='ethsync::api::TransactionStats'>TransactionStats</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns propagation count for pending transactions.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../../";
+        window.currentCrate = "ethcore_rpc";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../../jquery.js"></script>
+    <script src="../../../../main.js"></script>
+    
+    <script defer src="../../../../search-index.js"></script>
+</body>
+</html>

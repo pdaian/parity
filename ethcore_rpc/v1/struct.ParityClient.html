@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ParityClient` struct in crate `ethcore_rpc`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ParityClient">
+
+    <title>ethcore_rpc::v1::ParityClient - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>ethcore_rpc</a>::<wbr><a href='index.html'>v1</a></p><script>window.sidebarCurrent = {name: 'ParityClient', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>ethcore_rpc</a>::<wbr><a href='index.html'>v1</a>::<wbr><a class='struct' href=''>ParityClient</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-2462' class='srclink' href='../../src/ethcore_rpc/rpc/src/v1/impls/parity.rs.html#47-62' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct ParityClient&lt;C,&nbsp;M,&nbsp;S:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt; <span class='where'>where C: <a class='trait' href='../../ethcore/client/traits/trait.MiningBlockChainClient.html' title='ethcore::client::traits::MiningBlockChainClient'>MiningBlockChainClient</a>, M: <a class='trait' href='../../ethcore/miner/trait.MinerService.html' title='ethcore::miner::MinerService'>MinerService</a>, S: <a class='trait' href='../../ethsync/api/trait.SyncProvider.html' title='ethsync::api::SyncProvider'>SyncProvider</a></span> { /* fields omitted */ }</pre><div class='docblock'><p>Parity implementation.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;C,&nbsp;M,&nbsp;S:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt; <a class='struct' href='../../ethcore_rpc/v1/struct.ParityClient.html' title='ethcore_rpc::v1::ParityClient'>ParityClient</a>&lt;C,&nbsp;M,&nbsp;S&gt; <span class='where'>where C: <a class='trait' href='../../ethcore/client/traits/trait.MiningBlockChainClient.html' title='ethcore::client::traits::MiningBlockChainClient'>MiningBlockChainClient</a>, M: <a class='trait' href='../../ethcore/miner/trait.MinerService.html' title='ethcore::miner::MinerService'>MinerService</a>, S: <a class='trait' href='../../ethsync/api/trait.SyncProvider.html' title='ethsync::api::SyncProvider'>SyncProvider</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-2476' class='srclink' href='../../src/ethcore_rpc/rpc/src/v1/impls/parity.rs.html#64-101' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(client: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;C&gt;, miner: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;M&gt;, sync: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;S&gt;, net: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;<a class='trait' href='../../ethsync/api/trait.ManageNetwork.html' title='ethsync::api::ManageNetwork'>ManageNetwork</a>&gt;, store: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;<a class='struct' href='../../ethcore/account_provider/struct.AccountProvider.html' title='ethcore::account_provider::AccountProvider'>AccountProvider</a>&gt;, logger: <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;<a class='struct' href='../../ethcore_util/log/struct.RotatingLogger.html' title='ethcore_util::log::RotatingLogger'>RotatingLogger</a>&gt;, settings: <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;<a class='struct' href='../../ethcore_rpc/struct.NetworkSettings.html' title='ethcore_rpc::NetworkSettings'>NetworkSettings</a>&gt;, signer: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;<a class='struct' href='../../ethcore_rpc/struct.SignerService.html' title='ethcore_rpc::SignerService'>SignerService</a>&gt;&gt;, dapps_interface: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;, dapps_port: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>&gt;) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Creates new <code>ParityClient</code>.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;C,&nbsp;M,&nbsp;S:&nbsp;?<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>&gt; <a class='trait' href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html' title='ethcore_rpc::v1::traits::parity::Parity'>Parity</a> for <a class='struct' href='../../ethcore_rpc/v1/struct.ParityClient.html' title='ethcore_rpc::v1::ParityClient'>ParityClient</a>&lt;C,&nbsp;M,&nbsp;S&gt; <span class='where'>where M: <a class='trait' href='../../ethcore/miner/trait.MinerService.html' title='ethcore::miner::MinerService'>MinerService</a> + 'static, C: <a class='trait' href='../../ethcore/client/traits/trait.MiningBlockChainClient.html' title='ethcore::client::traits::MiningBlockChainClient'>MiningBlockChainClient</a> + 'static, S: <a class='trait' href='../../ethsync/api/trait.SyncProvider.html' title='ethsync::api::SyncProvider'>SyncProvider</a> + 'static</span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-2495' class='srclink' href='../../src/ethcore_rpc/rpc/src/v1/impls/parity.rs.html#103-356' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.transactions_limit' class='method'><span id='transactions_limit.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.transactions_limit' class='fnname'>transactions_limit</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns current transactions limit.</p>
+</div><h4 id='method.min_gas_price' class='method'><span id='min_gas_price.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.min_gas_price' class='fnname'>min_gas_price</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>U256</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns minimal gas price for transaction to be included in queue.</p>
+</div><h4 id='method.extra_data' class='method'><span id='extra_data.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.extra_data' class='fnname'>extra_data</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.Bytes.html' title='ethcore_rpc::v1::types::Bytes'>Bytes</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns mining extra data.</p>
+</div><h4 id='method.gas_floor_target' class='method'><span id='gas_floor_target.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.gas_floor_target' class='fnname'>gas_floor_target</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>U256</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns mining gas floor target.</p>
+</div><h4 id='method.gas_ceil_target' class='method'><span id='gas_ceil_target.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.gas_ceil_target' class='fnname'>gas_ceil_target</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>U256</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns mining gas floor cap.</p>
+</div><h4 id='method.dev_logs' class='method'><span id='dev_logs.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.dev_logs' class='fnname'>dev_logs</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns latest logs</p>
+</div><h4 id='method.dev_logs_levels' class='method'><span id='dev_logs_levels.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.dev_logs_levels' class='fnname'>dev_logs_levels</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns logs levels</p>
+</div><h4 id='method.net_chain' class='method'><span id='net_chain.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.net_chain' class='fnname'>net_chain</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns chain name</p>
+</div><h4 id='method.net_peers' class='method'><span id='net_peers.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.net_peers' class='fnname'>net_peers</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.Peers.html' title='ethcore_rpc::v1::types::Peers'>Peers</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns peers details</p>
+</div><h4 id='method.net_port' class='method'><span id='net_port.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.net_port' class='fnname'>net_port</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns network port</p>
+</div><h4 id='method.node_name' class='method'><span id='node_name.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.node_name' class='fnname'>node_name</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns node name</p>
+</div><h4 id='method.registry_address' class='method'><span id='registry_address.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.registry_address' class='fnname'>registry_address</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>H160</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns the value of the registrar for this network.</p>
+</div><h4 id='method.rpc_settings' class='method'><span id='rpc_settings.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.rpc_settings' class='fnname'>rpc_settings</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.RpcSettings.html' title='ethcore_rpc::v1::types::RpcSettings'>RpcSettings</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns rpc settings</p>
+</div><h4 id='method.default_extra_data' class='method'><span id='default_extra_data.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.default_extra_data' class='fnname'>default_extra_data</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.Bytes.html' title='ethcore_rpc::v1::types::Bytes'>Bytes</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns default extra data</p>
+</div><h4 id='method.gas_price_histogram' class='method'><span id='gas_price_histogram.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.gas_price_histogram' class='fnname'>gas_price_histogram</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.Histogram.html' title='ethcore_rpc::v1::types::Histogram'>Histogram</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns distribution of gas price in latest blocks.</p>
+</div><h4 id='method.unsigned_transactions_count' class='method'><span id='unsigned_transactions_count.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.unsigned_transactions_count' class='fnname'>unsigned_transactions_count</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns number of unsigned transactions waiting in the signer queue (if signer enabled) Returns error when signer is disabled <a href="../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.unsigned_transactions_count">Read more</a></p>
+</div><h4 id='method.generate_secret_phrase' class='method'><span id='generate_secret_phrase.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.generate_secret_phrase' class='fnname'>generate_secret_phrase</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns a cryptographically random phrase sufficient for securely seeding a secret key.</p>
+</div><h4 id='method.phrase_to_address' class='method'><span id='phrase_to_address.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.phrase_to_address' class='fnname'>phrase_to_address</a>(&amp;self, phrase: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>H160</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns whatever address would be derived from the given phrase if it were to seed a brainwallet.</p>
+</div><h4 id='method.list_accounts' class='method'><span id='list_accounts.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.list_accounts' class='fnname'>list_accounts</a>(&amp;self, count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>, after: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>H160</a>&gt;, block_number: Trailing&lt;<a class='enum' href='../../ethcore_rpc/v1/types/enum.BlockNumber.html' title='ethcore_rpc::v1::types::BlockNumber'>BlockNumber</a>&gt;) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>H160</a>&gt;&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns all addresses if Fat DB is enabled (<code>--fat-db</code>), or null if not.</p>
+</div><h4 id='method.list_storage_keys' class='method'><span id='list_storage_keys.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.list_storage_keys' class='fnname'>list_storage_keys</a>(&amp;self, address: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>H160</a>, count: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>, after: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>H256</a>&gt;, block_number: Trailing&lt;<a class='enum' href='../../ethcore_rpc/v1/types/enum.BlockNumber.html' title='ethcore_rpc::v1::types::BlockNumber'>BlockNumber</a>&gt;) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>H256</a>&gt;&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns all storage keys of the given address (first parameter) if Fat DB is enabled (<code>--fat-db</code>), or null if not. <a href="../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.list_storage_keys">Read more</a></p>
+</div><h4 id='method.encrypt_message' class='method'><span id='encrypt_message.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.encrypt_message' class='fnname'>encrypt_message</a>(&amp;self, key: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H512.html' title='ethcore_rpc::v1::types::H512'>H512</a>, phrase: <a class='struct' href='../../ethcore_rpc/v1/types/struct.Bytes.html' title='ethcore_rpc::v1::types::Bytes'>Bytes</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.Bytes.html' title='ethcore_rpc::v1::types::Bytes'>Bytes</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Encrypt some data with a public key under ECIES. First parameter is the 512-byte destination public key, second is the message. <a href="../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.encrypt_message">Read more</a></p>
+</div><h4 id='method.pending_transactions' class='method'><span id='pending_transactions.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.pending_transactions' class='fnname'>pending_transactions</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.Transaction.html' title='ethcore_rpc::v1::types::Transaction'>Transaction</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns all pending transactions from transaction queue.</p>
+</div><h4 id='method.pending_transactions_stats' class='method'><span id='pending_transactions_stats.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.pending_transactions_stats' class='fnname'>pending_transactions_stats</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>H256</a>,&nbsp;<a class='struct' href='../../ethcore_rpc/v1/types/struct.TransactionStats.html' title='ethcore_rpc::v1::types::TransactionStats'>TransactionStats</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns propagation statistics on transactions pending in the queue.</p>
+</div><h4 id='method.local_transactions' class='method'><span id='local_transactions.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.local_transactions' class='fnname'>local_transactions</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>H256</a>,&nbsp;<a class='enum' href='../../ethcore_rpc/v1/types/enum.LocalTransactionStatus.html' title='ethcore_rpc::v1::types::LocalTransactionStatus'>LocalTransactionStatus</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns a list of current and past local transactions with status details.</p>
+</div><h4 id='method.signer_port' class='method'><span id='signer_port.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.signer_port' class='fnname'>signer_port</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns current Trusted Signer port or an error if signer is disabled.</p>
+</div><h4 id='method.dapps_port' class='method'><span id='dapps_port.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.dapps_port' class='fnname'>dapps_port</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns current Dapps Server port or an error if dapps server is disabled.</p>
+</div><h4 id='method.dapps_interface' class='method'><span id='dapps_interface.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.dapps_interface' class='fnname'>dapps_interface</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns current Dapps Server interface address or an error if dapps server is disabled.</p>
+</div><h4 id='method.next_nonce' class='method'><span id='next_nonce.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.next_nonce' class='fnname'>next_nonce</a>(&amp;self, address: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>H160</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>U256</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns next nonce for particular sender. Should include all transactions in the queue.</p>
+</div><h4 id='method.mode' class='method'><span id='mode.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.mode' class='fnname'>mode</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Get the mode. Results one of: &quot;active&quot;, &quot;passive&quot;, &quot;dark&quot;, &quot;offline&quot;.</p>
+</div><h4 id='method.enode' class='method'><span id='enode.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.enode' class='fnname'>enode</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Get the enode of this node.</p>
+</div><h4 id='method.accounts' class='method'><span id='accounts.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#tymethod.accounts' class='fnname'>accounts</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Returns accounts information.</p>
+</div><h4 id='method.to_delegate' class='method'><span id='to_delegate.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity/trait.Parity.html#method.to_delegate' class='fnname'>to_delegate</a>(self) -&gt; IoDelegate&lt;Self&gt;</code></span></h4>
+<div class='docblock'><p>Transform this into an <code>IoDelegate</code>, automatically wrapping the parameters. <a href="../../ethcore_rpc/v1/traits/parity/trait.Parity.html#method.to_delegate">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "ethcore_rpc";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

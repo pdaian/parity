@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `SigningUnsafeClient` struct in crate `ethcore_rpc`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, SigningUnsafeClient">
+
+    <title>ethcore_rpc::v1::SigningUnsafeClient - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>ethcore_rpc</a>::<wbr><a href='index.html'>v1</a></p><script>window.sidebarCurrent = {name: 'SigningUnsafeClient', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>ethcore_rpc</a>::<wbr><a href='index.html'>v1</a>::<wbr><a class='struct' href=''>SigningUnsafeClient</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-3429' class='srclink' href='../../src/ethcore_rpc/rpc/src/v1/impls/signing_unsafe.rs.html#41-48' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct SigningUnsafeClient&lt;C,&nbsp;M&gt; <span class='where'>where C: <a class='trait' href='../../ethcore/client/traits/trait.MiningBlockChainClient.html' title='ethcore::client::traits::MiningBlockChainClient'>MiningBlockChainClient</a>, M: <a class='trait' href='../../ethcore/miner/trait.MinerService.html' title='ethcore::miner::MinerService'>MinerService</a></span> { /* fields omitted */ }</pre><div class='docblock'><p>Implementation of functions that require signing when no trusted signer is used.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl&lt;C,&nbsp;M&gt; <a class='struct' href='../../ethcore_rpc/v1/struct.SigningUnsafeClient.html' title='ethcore_rpc::v1::SigningUnsafeClient'>SigningUnsafeClient</a>&lt;C,&nbsp;M&gt; <span class='where'>where C: <a class='trait' href='../../ethcore/client/traits/trait.MiningBlockChainClient.html' title='ethcore::client::traits::MiningBlockChainClient'>MiningBlockChainClient</a>, M: <a class='trait' href='../../ethcore/miner/trait.MinerService.html' title='ethcore::miner::MinerService'>MinerService</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3435' class='srclink' href='../../src/ethcore_rpc/rpc/src/v1/impls/signing_unsafe.rs.html#50-80' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(client: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;C&gt;, accounts: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;<a class='struct' href='../../ethcore/account_provider/struct.AccountProvider.html' title='ethcore::account_provider::AccountProvider'>AccountProvider</a>&gt;, miner: &amp;<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/arc/struct.Arc.html' title='alloc::arc::Arc'>Arc</a>&lt;M&gt;) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Creates new SigningUnsafeClient.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;C:&nbsp;'static,&nbsp;M:&nbsp;'static&gt; <a class='trait' href='../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html' title='ethcore_rpc::v1::traits::eth_signing::EthSigning'>EthSigning</a> for <a class='struct' href='../../ethcore_rpc/v1/struct.SigningUnsafeClient.html' title='ethcore_rpc::v1::SigningUnsafeClient'>SigningUnsafeClient</a>&lt;C,&nbsp;M&gt; <span class='where'>where C: <a class='trait' href='../../ethcore/client/traits/trait.MiningBlockChainClient.html' title='ethcore::client::traits::MiningBlockChainClient'>MiningBlockChainClient</a>, M: <a class='trait' href='../../ethcore/miner/trait.MinerService.html' title='ethcore::miner::MinerService'>MinerService</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3461' class='srclink' href='../../src/ethcore_rpc/rpc/src/v1/impls/signing_unsafe.rs.html#82-112' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.sign' class='method'><span id='sign.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html#tymethod.sign' class='fnname'>sign</a>(&amp;self, ready: Ready&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H520.html' title='ethcore_rpc::v1::types::H520'>RpcH520</a>&gt;, address: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>RpcH160</a>, hash: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>RpcH256</a>)</code></span></h4>
+<div class='docblock'><p>Signs the data with given address signature.</p>
+</div><h4 id='method.send_transaction' class='method'><span id='send_transaction.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html#tymethod.send_transaction' class='fnname'>send_transaction</a>(&amp;self, ready: Ready&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>RpcH256</a>&gt;, request: <a class='struct' href='../../ethcore_rpc/v1/types/struct.TransactionRequest.html' title='ethcore_rpc::v1::types::TransactionRequest'>RpcTransactionRequest</a>)</code></span></h4>
+<div class='docblock'><p>Sends transaction; will block waiting for signer to return the transaction hash. If Signer is disable it will require the account to be unlocked. <a href="../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html#tymethod.send_transaction">Read more</a></p>
+</div><h4 id='method.sign_transaction' class='method'><span id='sign_transaction.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html#tymethod.sign_transaction' class='fnname'>sign_transaction</a>(&amp;self, ready: Ready&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.RichRawTransaction.html' title='ethcore_rpc::v1::types::RichRawTransaction'>RpcRichRawTransaction</a>&gt;, request: <a class='struct' href='../../ethcore_rpc/v1/types/struct.TransactionRequest.html' title='ethcore_rpc::v1::types::TransactionRequest'>RpcTransactionRequest</a>)</code></span></h4>
+<div class='docblock'><p>Signs transactions without dispatching it to the network. Returns signed transaction RLP representation and the transaction itself. It can be later submitted using <code>eth_sendRawTransaction/eth_submitTransaction</code>. <a href="../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html#tymethod.sign_transaction">Read more</a></p>
+</div><h4 id='method.to_delegate' class='method'><span id='to_delegate.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html#method.to_delegate' class='fnname'>to_delegate</a>(self) -&gt; IoDelegate&lt;Self&gt;</code></span></h4>
+<div class='docblock'><p>Transform this into an <code>IoDelegate</code>, automatically wrapping the parameters. <a href="../../ethcore_rpc/v1/traits/eth_signing/trait.EthSigning.html#method.to_delegate">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;C:&nbsp;'static,&nbsp;M:&nbsp;'static&gt; <a class='trait' href='../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html' title='ethcore_rpc::v1::traits::parity_signing::ParitySigning'>ParitySigning</a> for <a class='struct' href='../../ethcore_rpc/v1/struct.SigningUnsafeClient.html' title='ethcore_rpc::v1::SigningUnsafeClient'>SigningUnsafeClient</a>&lt;C,&nbsp;M&gt; <span class='where'>where C: <a class='trait' href='../../ethcore/client/traits/trait.MiningBlockChainClient.html' title='ethcore::client::traits::MiningBlockChainClient'>MiningBlockChainClient</a>, M: <a class='trait' href='../../ethcore/miner/trait.MinerService.html' title='ethcore::miner::MinerService'>MinerService</a></span></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-3489' class='srclink' href='../../src/ethcore_rpc/rpc/src/v1/impls/signing_unsafe.rs.html#114-141' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.decrypt_message' class='method'><span id='decrypt_message.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.decrypt_message' class='fnname'>decrypt_message</a>(&amp;self, ready: Ready&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.Bytes.html' title='ethcore_rpc::v1::types::Bytes'>RpcBytes</a>&gt;, address: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>RpcH160</a>, data: <a class='struct' href='../../ethcore_rpc/v1/types/struct.Bytes.html' title='ethcore_rpc::v1::types::Bytes'>RpcBytes</a>)</code></span></h4>
+<div class='docblock'><p>Decrypt some ECIES-encrypted message. First parameter is the address with which it is encrypted, second is the ciphertext. <a href="../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.decrypt_message">Read more</a></p>
+</div><h4 id='method.post_sign' class='method'><span id='post_sign.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.post_sign' class='fnname'>post_sign</a>(&amp;self, _: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H160.html' title='ethcore_rpc::v1::types::H160'>RpcH160</a>, _: <a class='struct' href='../../ethcore_rpc/v1/types/struct.H256.html' title='ethcore_rpc::v1::types::H256'>RpcH256</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../../ethcore_rpc/v1/types/enum.Either.html' title='ethcore_rpc::v1::types::Either'>RpcEither</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>RpcU256</a>,&nbsp;<a class='enum' href='../../ethcore_rpc/v1/types/enum.ConfirmationResponse.html' title='ethcore_rpc::v1::types::ConfirmationResponse'>RpcConfirmationResponse</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Posts sign request asynchronously. Will return a confirmation ID for later use with check_transaction. <a href="../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.post_sign">Read more</a></p>
+</div><h4 id='method.post_transaction' class='method'><span id='post_transaction.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.post_transaction' class='fnname'>post_transaction</a>(&amp;self, _: <a class='struct' href='../../ethcore_rpc/v1/types/struct.TransactionRequest.html' title='ethcore_rpc::v1::types::TransactionRequest'>RpcTransactionRequest</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../../ethcore_rpc/v1/types/enum.Either.html' title='ethcore_rpc::v1::types::Either'>RpcEither</a>&lt;<a class='struct' href='../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>RpcU256</a>,&nbsp;<a class='enum' href='../../ethcore_rpc/v1/types/enum.ConfirmationResponse.html' title='ethcore_rpc::v1::types::ConfirmationResponse'>RpcConfirmationResponse</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Posts transaction asynchronously. Will return a transaction ID for later use with check_transaction. <a href="../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.post_transaction">Read more</a></p>
+</div><h4 id='method.check_request' class='method'><span id='check_request.v' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.check_request' class='fnname'>check_request</a>(&amp;self, _: <a class='struct' href='../../ethcore_rpc/v1/types/struct.U256.html' title='ethcore_rpc::v1::types::U256'>RpcU256</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='../../ethcore_rpc/v1/types/enum.ConfirmationResponse.html' title='ethcore_rpc::v1::types::ConfirmationResponse'>RpcConfirmationResponse</a>&gt;,&nbsp;Error&gt;</code></span></h4>
+<div class='docblock'><p>Checks the progress of a previously posted request (transaction/sign). Should be given a valid send_transaction ID. <a href="../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#tymethod.check_request">Read more</a></p>
+</div><h4 id='method.to_delegate-1' class='method'><span id='to_delegate.v-1' class='invisible'><code>fn <a href='../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#method.to_delegate' class='fnname'>to_delegate</a>(self) -&gt; IoDelegate&lt;Self&gt;</code></span></h4>
+<div class='docblock'><p>Transform this into an <code>IoDelegate</code>, automatically wrapping the parameters. <a href="../../ethcore_rpc/v1/traits/parity_signing/trait.ParitySigning.html#method.to_delegate">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "ethcore_rpc";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

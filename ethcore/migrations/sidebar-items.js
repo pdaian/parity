@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Extract","Which part of block to preserve"]],"mod":[["blocks","Blocks database migrations."],["extras","Extras database migrations."],["state","State database migrations."]],"struct":[["ToV10","Account bloom migration."],["ToV9","Consolidation of extras/block/state databases into single one."]]});

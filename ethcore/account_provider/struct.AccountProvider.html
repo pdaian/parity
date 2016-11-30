@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `AccountProvider` struct in crate `ethcore`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, AccountProvider">
+
+    <title>ethcore::account_provider::AccountProvider - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>ethcore</a>::<wbr><a href='index.html'>account_provider</a></p><script>window.sidebarCurrent = {name: 'AccountProvider', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>ethcore</a>::<wbr><a href='index.html'>account_provider</a>::<wbr><a class='struct' href=''>AccountProvider</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-170' class='srclink' href='../../src/ethcore/ethcore/src/account_provider.rs.html#168-172' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct AccountProvider { /* fields omitted */ }</pre><div class='docblock'><p>Account management.
+Responsible for unlocking accounts.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../ethcore/account_provider/struct.AccountProvider.html' title='ethcore::account_provider::AccountProvider'>AccountProvider</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-174' class='srclink' href='../../src/ethcore/ethcore/src/account_provider.rs.html#174-378' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><span id='new.v' class='invisible'><code>fn <a href='#method.new' class='fnname'>new</a>(sstore: <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../../ethstore/secret_store/trait.SecretStore.html' title='ethstore::secret_store::SecretStore'>SecretStore</a>&gt;) -&gt; Self</code></span></h4>
+<div class='docblock'><p>Creates new account provider.</p>
+</div><h4 id='method.transient_provider' class='method'><span id='transient_provider.v' class='invisible'><code>fn <a href='#method.transient_provider' class='fnname'>transient_provider</a>() -&gt; Self</code></span></h4>
+<div class='docblock'><p>Creates not disk backed provider.</p>
+</div><h4 id='method.new_account' class='method'><span id='new_account.v' class='invisible'><code>fn <a href='#method.new_account' class='fnname'>new_account</a>(&amp;self, password: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Creates new random account.</p>
+</div><h4 id='method.new_account_and_public' class='method'><span id='new_account_and_public.v' class='invisible'><code>fn <a href='#method.new_account_and_public' class='fnname'>new_account_and_public</a>(&amp;self, password: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, <a class='type' href='../../ethkey/type.Public.html' title='ethkey::Public'>Public</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Creates new random account and returns address and public key</p>
+</div><h4 id='method.insert_account' class='method'><span id='insert_account.v' class='invisible'><code>fn <a href='#method.insert_account' class='fnname'>insert_account</a>(&amp;self, secret: <a class='type' href='../../ethkey/type.Secret.html' title='ethkey::Secret'>Secret</a>, password: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Inserts new account into underlying store.
+Does not unlock account!</p>
+</div><h4 id='method.import_presale' class='method'><span id='import_presale.v' class='invisible'><code>fn <a href='#method.import_presale' class='fnname'>import_presale</a>(&amp;self, presale_json: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, password: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Import a new presale wallet.</p>
+</div><h4 id='method.import_wallet' class='method'><span id='import_wallet.v' class='invisible'><code>fn <a href='#method.import_wallet' class='fnname'>import_wallet</a>(&amp;self, json: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, password: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Import a new presale wallet.</p>
+</div><h4 id='method.accounts' class='method'><span id='accounts.v' class='invisible'><code>fn <a href='#method.accounts' class='fnname'>accounts</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>&gt;,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns addresses of all accounts.</p>
+</div><h4 id='method.addresses_info' class='method'><span id='addresses_info.v' class='invisible'><code>fn <a href='#method.addresses_info' class='fnname'>addresses_info</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html' title='std::collections::hash::map::HashMap'>HashMap</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>,&nbsp;AccountMeta&gt;,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns each address along with metadata.</p>
+</div><h4 id='method.set_address_name' class='method'><span id='set_address_name.v' class='invisible'><code>fn <a href='#method.set_address_name' class='fnname'>set_address_name</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, name: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns each address along with metadata.</p>
+</div><h4 id='method.set_address_meta' class='method'><span id='set_address_meta.v' class='invisible'><code>fn <a href='#method.set_address_meta' class='fnname'>set_address_meta</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, meta: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns each address along with metadata.</p>
+</div><h4 id='method.accounts_info' class='method'><span id='accounts_info.v' class='invisible'><code>fn <a href='#method.accounts_info' class='fnname'>accounts_info</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html' title='std::collections::hash::map::HashMap'>HashMap</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>,&nbsp;AccountMeta&gt;,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns each account along with name and meta.</p>
+</div><h4 id='method.account_meta' class='method'><span id='account_meta.v' class='invisible'><code>fn <a href='#method.account_meta' class='fnname'>account_meta</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;AccountMeta,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns each account along with name and meta.</p>
+</div><h4 id='method.set_account_name' class='method'><span id='set_account_name.v' class='invisible'><code>fn <a href='#method.set_account_name' class='fnname'>set_account_name</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, name: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns each account along with name and meta.</p>
+</div><h4 id='method.set_account_meta' class='method'><span id='set_account_meta.v' class='invisible'><code>fn <a href='#method.set_account_meta' class='fnname'>set_account_meta</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, meta: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns each account along with name and meta.</p>
+</div><h4 id='method.test_password' class='method'><span id='test_password.v' class='invisible'><code>fn <a href='#method.test_password' class='fnname'>test_password</a>(&amp;self, account: &amp;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns <code>true</code> if the password for <code>account</code> is <code>password</code>. <code>false</code> if not.</p>
+</div><h4 id='method.kill_account' class='method'><span id='kill_account.v' class='invisible'><code>fn <a href='#method.kill_account' class='fnname'>kill_account</a>(&amp;self, account: &amp;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Permanently removes an account.</p>
+</div><h4 id='method.change_password' class='method'><span id='change_password.v' class='invisible'><code>fn <a href='#method.change_password' class='fnname'>change_password</a>(&amp;self, account: &amp;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, new_password: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Changes the password of <code>account</code> from <code>password</code> to <code>new_password</code>. Fails if incorrect <code>password</code> given.</p>
+</div><h4 id='method.unlock_account_permanently' class='method'><span id='unlock_account_permanently.v' class='invisible'><code>fn <a href='#method.unlock_account_permanently' class='fnname'>unlock_account_permanently</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Unlocks account permanently.</p>
+</div><h4 id='method.unlock_account_temporarily' class='method'><span id='unlock_account_temporarily.v' class='invisible'><code>fn <a href='#method.unlock_account_temporarily' class='fnname'>unlock_account_temporarily</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Unlocks account temporarily (for one signing).</p>
+</div><h4 id='method.unlock_account_timed' class='method'><span id='unlock_account_timed.v' class='invisible'><code>fn <a href='#method.unlock_account_timed' class='fnname'>unlock_account_timed</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, duration_ms: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Unlocks account temporarily with a timeout.</p>
+</div><h4 id='method.is_unlocked' class='method'><span id='is_unlocked.v' class='invisible'><code>fn <a href='#method.is_unlocked' class='fnname'>is_unlocked</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>Checks if given account is unlocked</p>
+</div><h4 id='method.sign' class='method'><span id='sign.v' class='invisible'><code>fn <a href='#method.sign' class='fnname'>sign</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;, message: <a class='type' href='../../ethkey/type.Message.html' title='ethkey::Message'>Message</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../../ethcore/account_provider/struct.Signature.html' title='ethcore::account_provider::Signature'>Signature</a>,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Signs the message. If password is not provided the account must be unlocked.</p>
+</div><h4 id='method.decrypt' class='method'><span id='decrypt.v' class='invisible'><code>fn <a href='#method.decrypt' class='fnname'>decrypt</a>(&amp;self, account: <a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>, password: <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;, shared_mac: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, message: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Decrypts a message. If password is not provided the account must be unlocked.</p>
+</div><h4 id='method.list_geth_accounts' class='method'><span id='list_geth_accounts.v' class='invisible'><code>fn <a href='#method.list_geth_accounts' class='fnname'>list_geth_accounts</a>(&amp;self, testnet: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns the underlying <code>SecretStore</code> reference if one exists.</p>
+</div><h4 id='method.import_geth_accounts' class='method'><span id='import_geth_accounts.v' class='invisible'><code>fn <a href='#method.import_geth_accounts' class='fnname'>import_geth_accounts</a>(&amp;self, desired: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>&gt;, testnet: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../../ethkey/type.Address.html' title='ethkey::Address'>Address</a>&gt;,&nbsp;<a class='enum' href='../../ethcore/account_provider/enum.Error.html' title='ethcore::account_provider::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Returns the underlying <code>SecretStore</code> reference if one exists.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "ethcore";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
