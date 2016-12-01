@@ -18,9 +18,13 @@ def do_request(payload):
 
     return response
 
-
+# Get miner address
+miner_id = int(requests.get("http://54.198.251.130:5000/get_my_ip").text.strip())
+method_result = call_method("parity_newAccountFromPhrase", [str(miner_id), "test"])
+print method_result
+addr = str(method_result['result'])
 params = [{
-			  "from": "0xbfbd48cb48c61db8a69724f60239bf7c9cbab986",
+			"from": addr,
                         "to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
                         "gas": "0x76c0",
                         "gasPrice": "0x9184e72a000",
@@ -28,11 +32,35 @@ params = [{
                 }]
 
 while 1:
-    call_method("eth_sendTransaction", params)
     print call_method("eth_blockNumber")
+    print call_method("eth_sendTransaction", params)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     #time.sleep(30)
 print call_method("parity_enode")
 print call_method("parity_addReservedPeer", ["enode://1da9a307ae469ee2c3a7d38c79fb290c8b815af71ca3d434cb27ecff4421caddfd1df55969313dea284975341027a21bde655b8a1a398e357b894d2a0c60f5f3@162.248.4.26:30303"])
 exit(1)
 print tx
 print call_method("eth_getTransactionReceipt", [str(tx['result'])])
+for i in range(0, 100):
+    addr = str(call_method("parity_newAccountFromPhrase", [str(i), ""])['result'])
+    open("/home/ubuntu/addrs", "a").write(addr + "\n")
+exit(1)
