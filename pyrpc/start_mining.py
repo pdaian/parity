@@ -37,7 +37,7 @@ password = ["/home/ubuntu/accountpassword"]
 
 [mining]
 author = "[1]"
-reseal_on_txs = "none"
+reseal_on_txs = "all"
 force_sealing = false
 """
 
