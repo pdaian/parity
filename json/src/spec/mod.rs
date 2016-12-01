@@ -27,6 +27,7 @@ pub mod state;
 pub mod ethash;
 pub mod validator_set;
 pub mod basic_authority;
+pub mod snow_white;
 pub mod authority_round;
 pub mod tendermint;
 
@@ -41,5 +42,6 @@ pub use self::state::State;
 pub use self::ethash::{Ethash, EthashParams};
 pub use self::validator_set::ValidatorSet;
 pub use self::basic_authority::{BasicAuthority, BasicAuthorityParams};
+pub use self::snow_white::{SnowWhite, SnowWhiteParams};
 pub use self::authority_round::{AuthorityRound, AuthorityRoundParams};
 pub use self::tendermint::{Tendermint, TendermintParams};

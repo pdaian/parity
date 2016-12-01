@@ -16,7 +16,7 @@
 
 //! Engine deserialization.
 
-use super::{Ethash, BasicAuthority, AuthorityRound, Tendermint};
+use super::{Ethash, BasicAuthority, AuthorityRound, Tendermint, SnowWhite};
 
 /// Engine deserialization.
 #[derive(Debug, PartialEq, Deserialize)]
@@ -32,6 +32,8 @@ pub enum Engine {
 	/// BasicAuthority engine.
 	#[serde(rename="basicAuthority")]
 	BasicAuthority(BasicAuthority),
+	/// SnowWhite proof-of-stake engine.
+	SnowWhite(SnowWhite),
 	/// AuthorityRound engine.
 	#[serde(rename="authorityRound")]
 	AuthorityRound(AuthorityRound),

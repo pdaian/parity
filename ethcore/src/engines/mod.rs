@@ -21,6 +21,7 @@ mod vote_collector;
 mod null_engine;
 mod instant_seal;
 mod basic_authority;
+mod snow_white;
 mod authority_round;
 mod tendermint;
 mod validator_set;
@@ -31,6 +32,7 @@ pub use self::instant_seal::InstantSeal;
 pub use self::basic_authority::BasicAuthority;
 pub use self::authority_round::AuthorityRound;
 pub use self::tendermint::Tendermint;
+pub use self::snow_white::SnowWhite;
 
 use std::sync::Weak;
 use util::*;
@@ -175,6 +177,18 @@ pub trait Engine : Sync + Send {
 	fn verify_block_seal(&self, header: &Header) -> Result<(), Error> {
 		self.verify_block_basic(header, None).and_then(|_| self.verify_block_unordered(header, None))
 	}
+
+    /// Get the required difficulty of the new block through the calculation standard in Homestead, formalized in EIP2 https://git$
+    fn get_difficulty_from_parent(&self, header: &Header, parent: &Header) -> U256 {
+        // ethhash difficulty calculation
+        let diffinc = (header.timestamp().clone() - parent.timestamp().clone()) / 10;
+        if diffinc <= 1 {
+            parent.difficulty().clone() + parent.difficulty().clone() / From::from(2048) * From::from(1 - diffinc)
+        } else {
+            parent.difficulty().clone() - parent.difficulty().clone() / From::from(2048) * From::from(min(diffinc - 1, 99))
+        }
+    }
+
 
 	/// Populate a header's fields based on its parent's header.
 	/// Usually implements the chain scoring rule based on weight.

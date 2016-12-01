@@ -1,0 +1,11 @@
+[parity]
+chain = "/home/ubuntu/chain_spec.json"
+
+[account]
+unlock = ["0x005e477bfb42092d78db3aa8568f2fa6bae440e6"]
+password = ["/home/ubuntu/accountpassword"]
+
+[mining]
+author = "0x005e477bfb42092d78db3aa8568f2fa6bae440e6"
+reseal_on_txs = "all"
+force_sealing = false
