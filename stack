@@ -1,0 +1,52 @@
+   1:     0x7f408691f4df - std::sys::backtrace::tracing::imp::write::h6f1d53a70916b90d
+   2:     0x7f40869272dd - std::panicking::default_hook::{{closure}}::h137e876f7d3b5850
+   3:     0x7f4086925c3a - std::panicking::default_hook::h0ac3811ec7cee78c
+   4:     0x7f4086926238 - std::panicking::rust_panic_with_hook::hc303199e04562edf
+   5:     0x7f40869260d2 - std::panicking::begin_panic::h6ed03353807cf54d
+   6:     0x7f4086926010 - std::panicking::begin_panic_fmt::hc321cece241bb2f5
+   7:     0x7f4086925f91 - rust_begin_unwind
+   8:     0x7f40869625bf - core::panicking::panic_fmt::h27224b181f9f037f
+   9:     0x7f4086962563 - core::panicking::panic_bounds_check::h19e9bbc59320a57e
+  10:     0x7f4085ce58e0 - ethcore::ethereum::ethash::<impl ethcore::header::Header>::nonce::h0658cc041d07cfb9
+                        at /home/ubuntu/snowwhite/ethcore/src/ethereum/ethash.rs:404
+  11:     0x7f4085cb7b5f - <ethcore::engines::snow_white::SnowWhite as ethcore::engines::Engine>::verify_block_family::h6d6250e7693ba906
+                        at /home/ubuntu/snowwhite/ethcore/src/engines/snow_white.rs:194
+  12:     0x7f4085d51be8 - ethcore::verification::verification::verify_block_family::hcbce86b49ac0b908
+                        at /home/ubuntu/snowwhite/ethcore/src/verification/verification.rs:101
+  13:     0x7f4085d5d4f0 - <ethcore::verification::canon_verifier::CanonVerifier as ethcore::verification::verifier::Verifier>::verify_block_family::hb3db304dc15bd515
+                        at /home/ubuntu/snowwhite/ethcore/src/verification/canon_verifier.rs:31
+  14:     0x7f4085cc87e2 - ethcore::client::client::Client::check_and_close_block::h7f1b0d8a2be957ba
+                        at /home/ubuntu/snowwhite/ethcore/src/client/client.rs:333
+  15:     0x7f4085cca64f - ethcore::client::client::Client::import_verified_blocks::hca580be242c60b70
+                        at /home/ubuntu/snowwhite/ethcore/src/client/client.rs:413
+  16:     0x7f4085ceb58e - <ethcore::service::ClientIoHandler as ethcore_io::IoHandler<ethcore::service::ClientIoMessage>>::message::h07743aaa2518eaf8
+                        at /home/ubuntu/snowwhite/ethcore/src/service.rs:194
+  17:     0x7f4085a7fd6d - <ethcore_io::service::IoChannel<Message>>::send_sync::h18ede60d7aa1cca5
+                        at /home/ubuntu/snowwhite/util/io/src/service.rs:343
+  18:     0x7f4085d56839 - ethcore::verification::queue::QueueSignal::set_sync::hd2460a6251856469
+                        at /home/ubuntu/snowwhite/ethcore/src/verification/queue/mod.rs:125
+  19:     0x7f4085d59c88 - <ethcore::verification::queue::VerificationQueue<K>>::verify::h162e1bb3e1b70850
+                        at /home/ubuntu/snowwhite/ethcore/src/verification/queue/mod.rs:300
+  20:     0x7f4085df7261 - <ethcore::verification::queue::VerificationQueue<K>>::new::{{closure}}::{{closure}}::h95750e0832b3a11b
+                        at /home/ubuntu/snowwhite/ethcore/src/verification/queue/mod.rs:203
+  21:     0x7f408565d021 - ethcore_io::panics::PanicHandler::catch_panic::h297a64d6aca73e2c
+                        at /home/ubuntu/snowwhite/util/io/src/panics.rs:85
+  22:     0x7f4085e3871a - <ethcore::verification::queue::VerificationQueue<K>>::new::{{closure}}::h85dff24409ee4bf0
+                        at /home/ubuntu/snowwhite/ethcore/src/verification/queue/mod.rs:202
+  23:     0x7f4085c74b82 - <std::panic::AssertUnwindSafe<F> as core::ops::FnOnce<()>>::call_once::h3de7b2baacec6cdf
+                        at /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/obj/../src/libstd/panic.rs:255
+  24:     0x7f408586ecd7 - std::panicking::try::do_call::h9e8fbdac6e660575
+                        at /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/obj/../src/libstd/panicking.rs:356
+  25:     0x7f408692eda6 - __rust_maybe_catch_panic
+  26:     0x7f408586c370 - std::panicking::try::h2877c394a5846a2e
+                        at /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/obj/../src/libstd/panicking.rs:332
+  27:     0x7f4085863c16 - std::panic::catch_unwind::hba02148278404eed
+                        at /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/obj/../src/libstd/panic.rs:311
+  28:     0x7f4085e26ed6 - std::thread::Builder::spawn::{{closure}}::h1d9a8d1549619665
+                        at /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/obj/../src/libstd/thread/mod.rs:277
+  29:     0x7f40859672be - <F as alloc::boxed::FnBox<A>>::call_box::h8361b0f50e4e6738
+                        at /buildslave/rust-buildbot/slave/stable-dist-rustc-linux/build/obj/../src/liballoc/boxed.rs:591
+  30:     0x7f4086924a10 - std::sys::thread::Thread::new::thread_start::h759e10bc4abc7e72
+  31:     0x7f40835df183 - start_thread
+  32:     0x7f4083ffb37c - clone
+
