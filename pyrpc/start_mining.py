@@ -47,6 +47,7 @@ miner_id = int(requests.get("http://54.198.251.130:5000/get_my_ip").text.strip()
 method_result = call_method("parity_newAccountFromPhrase", [str(miner_id), "test"])
 print method_result
 addr = str(method_result['result'])
+open('/home/ubuntu/address', 'w').write(addr)
 
 print "got addr", addr
 

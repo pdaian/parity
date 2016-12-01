@@ -18,11 +18,7 @@ def do_request(payload):
 
     return response
 
-# Get miner address
-miner_id = int(requests.get("http://54.198.251.130:5000/get_my_ip").text.strip())
-method_result = call_method("parity_newAccountFromPhrase", [str(miner_id), "test"])
-print method_result
-addr = str(method_result['result'])
+addr = open('/home/ubuntu/.parity/address').read().strip()
 params = [{
 			"from": addr,
                         "to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
