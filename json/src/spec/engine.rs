@@ -18,6 +18,7 @@
 
 use spec::Ethash;
 use spec::BasicAuthority;
+use spec::SnowWhite;
 use spec::AuthorityRound;
 
 /// Engine deserialization.
@@ -31,6 +32,8 @@ pub enum Engine {
 	Ethash(Ethash),
 	/// BasicAuthority engine.
 	BasicAuthority(BasicAuthority),
+	/// SnowWhite proof-of-stake engine.
+	SnowWhite(SnowWhite),
 	/// AuthorityRound engine.
 	AuthorityRound(AuthorityRound),
 }

@@ -26,6 +26,7 @@ pub mod engine;
 pub mod state;
 pub mod ethash;
 pub mod basic_authority;
+pub mod snow_white;
 pub mod authority_round;
 
 pub use self::account::Account;
@@ -38,4 +39,5 @@ pub use self::engine::Engine;
 pub use self::state::State;
 pub use self::ethash::{Ethash, EthashParams};
 pub use self::basic_authority::{BasicAuthority, BasicAuthorityParams};
+pub use self::snow_white::{SnowWhite, SnowWhiteParams};
 pub use self::authority_round::{AuthorityRound, AuthorityRoundParams};
