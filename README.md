@@ -1,131 +1,143 @@
-# [Parity](https://ethcore.io/parity.html)
-### Fast, light, and robust Ethereum implementation
+Snow White
+----------
 
-[![Build Status][travis-image]][travis-url] [![build status](https://gitlab.ethcore.io/Mirrors/ethcore-parity/badges/master/build.svg)](https://gitlab.ethcore.io/Mirrors/ethcore-parity/commits/master) [![Coverage Status][coveralls-image]][coveralls-url]  [![GPLv3][license-image]][license-url]
+Snow White is the first provably secure proof of stake algorithm implemented on top of Ethereum, currently for the *permissioned* setting
+(fixed set of participants known a priori).  We plan on generalizing Snow White to the permissionless setting for USENIX Security '17.
 
-### Join the chat!
+Snow White relies on the "honest participant/coin majority" assumption.  There is some debate on the vulnerability of this model to attack
+in the permissionless context: https://blog.ethereum.org/2016/12/06/history-casper-chapter-1/ and more research is needed before deploying
+a live financial system with this algorithm.
 
-Parity [![Join the chat at https://gitter.im/ethcore/parity][gitter-image]][gitter-url] and
-parity.js [![Join the chat at https://gitter.im/ethcore/parity.js](https://badges.gitter.im/ethcore/parity.js.svg)](https://gitter.im/ethcore/parity.js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Code Changes / Diff Description
+-------------------------------
 
-[Internal Documentation][doc-url]
+Our system is based off of Parity (github.com/ethcore/parity), the fastest and most robust Ethereum blockchain implementation available.
+
+A full diff of our system to Parity is available here: https://github.com/ethcore/parity/compare/master...pdaian:snowwhite
+
+The "core changes" (changes to mining algorithms, consensus, and their tests) are approximately 600-800 lines of code.
+
+The "auxilliary changes" (including management scripts, experiments, etc.) are approximately 1200 lines of code.
+
+The full diff is larger, as it includes "explorer", a modified version of EtherParty (see the explorer section below) that 
+*we modified but did not write*.  Explorer is not included in the above Github diff for simplicity of code analysis, but is 
+included in the final SnowWhite tarball.
+
+The key changes are as follows (in order of importance):
+
+- ethcore/src/engines/snow_white.rs : The Core Snow White algorithm.  Some code/tests borrowed from engines/basic_authority.rs; in these cases,
+   a comment is included indicating that the code is "the same as BasicAuthority".  These are the core consensus algorithm changes, and
+   represent a robust core of extensively tested (through deployment clusters) code.
+-  ethcore/src/engines/mod.rs : The generic Ethcore engines framework.  Here, we reintroduce the difficulty adjustment algorithm used in
+   Ethereum, which previously was not required for permissioned engines.
+- pyrpc : this folder contains an interface for interacting with SnowWhite through RPC, and several useful scripts described later in this doc
+- util : installation / management / measurement utilities described later in this document.
+- config-skeleton : example configuration files described later in this document.
+
+There are several smaller changes to infrastructure that are procedural / uninteresting.
+
+Please don't hestitate to contact me about any questions or confusions regarding either the diff provided or its description.
+
+Prerequisites
+-------------
+
+To build and run SnowWhite, you must:
+
+- Install git, make, gcc, and g++.  On Ubuntu, you can ``sudo apt-get install git make build-essential g++`` to satsify these 
+    dependencies. 
+- Install stable Rust through rustup (https://www.rustup.rs/).  On Linux, simply run ``curl https://sh.rustup.rs -sSf | sh`` 
+    in the command line.
 
 
-Be sure to check out [our wiki][wiki-url] for more information.
-
-[travis-image]: https://travis-ci.org/ethcore/parity.svg?branch=master
-[travis-url]: https://travis-ci.org/ethcore/parity
-[coveralls-image]: https://coveralls.io/repos/github/ethcore/parity/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/ethcore/parity?branch=master
-[gitter-image]: https://badges.gitter.im/Join%20Chat.svg
-[gitter-url]: https://gitter.im/ethcore/parity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[license-image]: https://img.shields.io/badge/license-GPL%20v3-green.svg
-[license-url]: https://www.gnu.org/licenses/gpl-3.0.en.html
-[doc-url]: https://ethcore.github.io/parity/ethcore/index.html
-[wiki-url]: https://github.com/ethcore/parity/wiki
-
-**Parity requires Rust version 1.12.0 to build**
-
-----
+Running the System - One Node
+-----------------------------
 
 
-## About Parity
 
-Parity's goal is to be the fastest, lightest, and most secure Ethereum client. We are developing Parity using the sophisticated and
-cutting-edge Rust programming language. Parity is licensed under the GPLv3, and can be used for all your Ethereum needs.
+To run at diferent info levels,
 
-Parity comes with a built-in wallet. To access [Parity Wallet](http://127.0.0.1:8080/) this simply go to http://127.0.0.1:8080/. It
-includes various functionality allowing you to:
-- create and manage your Ethereum accounts;
-- manage your Ether and any Ethereum tokens;
-- create and register your own tokens;
-- and much more.    
+To compile in debug mode (with debug symbols, stacktraces, but lower performance) run ``cargo build --debug".  Then, replace any commands
+in this document or related scripts that use ``target/release`` with ``target/debug``.  This is not recommended due to a far lower level
+of performance (~20x slower in our testing).
 
-By default, Parity will also run a JSONRPC server on `127.0.0.1:8545`. This is fully configurable and supports a number
-of RPC APIs.
 
-If you run into an issue while using parity, feel free to file one in this repository
-or hop on our [gitter chat room][gitter-url] to ask a question. We are glad to help!
+Running the Block Explorer
+--------------------------
 
-Parity's current release is 1.3. You can download it at https://ethcore.io/parity.html or follow the instructions
-below to build from source.
+SnowWhite comes with a minorly modified version of EtherParty (https://github.com/etherparty/explorer/), a blockchain explorer that
+allows you to visualize the chain generated by SnowWhite.  
 
-----
+This is bundled with the copy of Parity included in this project's tgz.  To run the block explorer, simply install ``npm nodejs``,
+and make sure the ``node`` CLI command opens node.js (on some distros, including Ubuntu 14.04, bundled with AWS, this may require 
+creating a symlink like ``ln -s /usr/bin/nodejs /usr/bin/node``).
 
-## Build dependencies
+Connecting Multiple Nodes
+-------------------------
 
-Parity is fully compatible with Stable Rust.
+The first step in running the system with multiple nodes is to run a single "anchor node" as in the "one node" instructions.
 
-We recommend installing Rust through [rustup](https://www.rustup.rs/). If you don't already have rustup, you can install it like this:
 
-- Linux and OSX:
-	```bash
-	$ curl https://sh.rustup.rs -sSf | sh
-	```
-	
-	Parity also requires `gcc`, `g++` and `make` packages to be installed.
-- OSX:
-	```bash
-	$ curl https://sh.rustup.rs -sSf | sh
-	```
 
-	`clang` and `make` are required. These come with Xcode command line tools or can be installed with homebrew.
-- Windows
 
-    Make sure you have Visual Studio 2015 with C++ support installed. Next, download and run the rustup installer from
-	https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe, start "VS2015 x64 Native Tools Command Prompt", and use the following command to install and set up the msvc toolchain:
-    ```
-	$ rustup default stable-x86_64-pc-windows-msvc
-    ```
+Management - RPC and SSH
+------------------------
 
-Once you have rustup, install parity or download and build from source
+Once either a single or multiple node instance of SnowWhite is spawned, you can 
 
-----
 
-## Quick install
 
-```bash
-cargo install --git https://github.com/ethcore/parity.git parity
-```
 
-----
+Running Tests
+-------------
 
-## Build from source
+To run unit tests of Snow White only, run:
+	cargo test snow -p ethcore
 
-```bash
-# download Parity code
-$ git clone https://github.com/ethcore/parity
-$ cd parity
+in the root of the project directory.
 
-# build in release mode
-$ cargo build --release
-```
+Any test with "NEW" as a prefix in the name was added specifically for SnowWhite.  Any test without "NEW" as a prefix was carried over
+from the BasicAuthority module described in the "Code Changes" section.
 
-This will produce an executable in the `./target/release` subdirectory.
 
-----
+Gathering Graphs/Data
+---------------------
 
-## Simple one-line installer for Mac and Ubuntu
+To gather the graphs and data in the final report, the following process was used:
 
-```bash
-bash <(curl https://get.parity.io -Lk)
-```
+1. Start a multi-node mining network as described in the "Connecting Multiple Nodes" section.  Do not begin mining yet. 
+2. Run "util/process3dGraph.py".  This will begin gathering data for the resource consumption (CPU, memory) graphs drawn.
+3. Start mining on a single node as described in "Connecting Multiple Nodes".
+4. Wait a minute or so.
+5. Start mining on multiple nodes as described in "Connecting Multiple Nodes".  Do not mine on the node gathering data.
+6. Optionally, start mining on the node gathering data.
+7. Stop mining on all nodes.
+8. To gather a summary of the blockchain generated by these nodes, add the node IPs to a file "~/nodes", one IP per line.
+9. Run "gather_blockchain_data.py" in the "pyrpc" folder.  This will gather the blockchain statistics used in the first graphs.
+   Preferably, do this on the same machine used to gather CPU/memory data (in case of blockchain forks), but any machine should do.
+10. Enjoy the graphs!
 
-## Start Parity
-### Manually
-To start Parity manually, just run
-```bash
-$ ./target/release/parity
-```
 
-and Parity will begin syncing the Ethereum blockchain.
+Modifying the Chain Spec
+-------------------------
 
-### Using systemd service file
-To start Parity as a regular user using systemd init:
+To modify the chain specification, including adding or removing authorities mid-chain, simply modify the ``chain_spec.json`` file as desired.
 
-1. Copy `parity/scripts/parity.service` to your
-systemd user directory (usually `~/.config/systemd/user`).
-2. To pass any argument to Parity, write a `~/.parity/parity.conf` file this way:
-`ARGS="ARG1 ARG2 ARG3"`.
+Specifically, accounts can easily be added or removed from the ``authorities`` field to enable these accounts to mine.  Note that if two nodes
+in a multiple node network have different ``authorities`` sets, their chains may diverge, leading to consensus failure.
 
-	Example: `ARGS="ui --geth --identity MyMachine"`.
+Other parameters of the chain that can be modified are covered in the Parity documentation here: 
+     https://github.com/ethcore/parity/wiki/Private-chains
+
+
+Assistance?
+-----------
+
+This project represents a modification to an extremely complex and experimental distributed consensus system.  While I believe the above 
+instructions are comprehensive and should be workable, please don't hesitate to contact me with any questions / requests for clarification.
+
+While I have also tried to test this system extensively (on both AWS clusters and with some unit testing), it is possible that consensus bugs
+may result in the blockchain forking permanently at some point or ceasing to process new blocks (in case of the violation of a fundamental
+time constraint).  If this rare scenario occurs, I am happy to do a postmorterm and explain how to proceed.
+
+E-mail me any time at pad242@cornell.edu.  I will also be on campus until at least Thursday, Dec. 15 and can walk through setup or
+experiments in person.
