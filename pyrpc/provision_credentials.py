@@ -1,4 +1,4 @@
-import requests, json, time
+import requests, json, time, sys
 
 def call_method(method, params=[]):
 	payload = {
