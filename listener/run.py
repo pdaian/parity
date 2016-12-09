@@ -1,4 +1,5 @@
-from flask import request, jsonify, Flask, sys
+from flask import request, jsonify, Flask
+import sys, os
 app = Flask(__name__)
 
 @app.route("/get_my_ip", methods=["GET"])
@@ -14,4 +15,7 @@ def get_my_ip():
     return str(id % 100)
 
 if __name__ == '__main__':
+    path = sys.argv[1]
+    os.system("touch " + path + "nodes")
+    open(path + "counter", "w").write("1")
     app.run(host='0.0.0.0')
