@@ -43,14 +43,15 @@ force_sealing = false
 
 try:
     sys.argv[1]
+    sys.argv[2]
 except:
-    print "Usage: python provision_credentials.py [home directory including trailing /]"
-    print "EG (AWS Ubuntu): python provision_credentials.py /home/ubuntu/"
+    print "Usage: python provision_credentials.py [home directory including trailing /] [credential server IP]"
+    print "EG (AWS Ubuntu): python provision_credentials.py /home/ubuntu/ 0.0.0.0"
     exit(1)
 
 
 # Get miner address
-miner_id = int(requests.get("http://54.198.251.130:5000/get_my_ip").text.strip())
+miner_id = int(requests.get("http://" + sys.argv[2] + ":5000/get_my_ip").text.strip())
 method_result = call_method("parity_newAccountFromPhrase", [str(miner_id), "test"])
 print method_result
 addr = str(method_result['result'])
