@@ -29,11 +29,11 @@ params = [{
 
 
 config_text = """[parity]
-chain = "/home/ubuntu/chain_spec.json"
+chain = "[2]chain_spec.json"
 
 [account]
 unlock = ["[1]"]
-password = ["/home/ubuntu/accountpassword"]
+password = ["[2]accountpassword"]
 
 [mining]
 author = "[1]"
@@ -41,16 +41,24 @@ reseal_on_txs = "all"
 force_sealing = false
 """
 
+try:
+    sys.argv[1]
+except:
+    print "Usage: python provision_credentials.py [home directory including trailing /]"
+    print "EG (AWS Ubuntu): python provision_credentials.py /home/ubuntu/"
+    exit(1)
+
 
 # Get miner address
 miner_id = int(requests.get("http://54.198.251.130:5000/get_my_ip").text.strip())
 method_result = call_method("parity_newAccountFromPhrase", [str(miner_id), "test"])
 print method_result
 addr = str(method_result['result'])
-open('/home/ubuntu/.parity/address', 'w').write(addr)
+open(sys.argv[1] + '.parity/address', 'w').write(addr)
 
 print "got addr", addr
 
 config_text = config_text.replace("[1]", addr)
+config_text = config_text.replace("[2]", sys.argv[1])
 open('/home/ubuntu/.parity/config.toml', 'w').write(config_text)
 print "Wrote config.  Ready to mine!"

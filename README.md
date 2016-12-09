@@ -129,6 +129,12 @@ Other parameters of the chain that can be modified are covered in the Parity doc
      https://github.com/ethcore/parity/wiki/Private-chains
 
 
+Original README
+---------------
+
+The original Parity README is included in PARITY_README.md and contains general information on Parity, the upstream system of SnowWhite.
+
+
 Assistance?
 -----------
 
