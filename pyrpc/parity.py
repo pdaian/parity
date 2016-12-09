@@ -30,6 +30,7 @@ params = [{
 while 1:
     print call_method("eth_blockNumber")
     print call_method("eth_sendTransaction", params)
+    #time.sleep(5)
 
 
 

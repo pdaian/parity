@@ -291,21 +291,21 @@ mod tests {
 	use spec::Spec;
 
 	/// Create a new test chain spec with `SnowWhite` consensus engine.
-	fn new_test_authority() -> Spec {
+	fn new_test_snowwhite() -> Spec {
 		let bytes: &[u8] = include_bytes!("../../res/test_swhite.json");
 		Spec::load(bytes).expect("invalid chain spec")
 	}
 
 	#[test]
-	fn has_valid_metadata() {
-		let engine = new_test_authority().engine;
-		assert!(!engine.name().is_empty());
-		assert!(engine.version().major >= 1);
+	fn NEW_has_valid_metadata() {
+		let engine = new_test_snowwhite().engine;
+		assert!(engine.version().major == 1);
+		assert!(engine.name() == "SnowWhite");
 	}
 
 	#[test]
 	fn can_return_schedule() {
-		let engine = new_test_authority().engine;
+		let engine = new_test_snowwhite().engine;
 		let schedule = engine.schedule(&EnvInfo {
 			number: 10000000,
 			author: 0.into(),
@@ -321,7 +321,7 @@ mod tests {
 
 	#[test]
 	fn can_do_seal_verification_fail() {
-		let engine = new_test_authority().engine;
+		let engine = new_test_snowwhite().engine;
 		let header: Header = Header::default();
 
 		let verify_result = engine.verify_block_basic(&header, None);
@@ -335,7 +335,7 @@ mod tests {
 
 	#[test]
 	fn can_do_signature_verification_fail() {
-		let engine = new_test_authority().engine;
+		let engine = new_test_snowwhite().engine;
 		let mut header: Header = Header::default();
 		header.set_seal(vec![::rlp::encode(&H520::default()).to_vec()]);
 
@@ -349,7 +349,7 @@ mod tests {
 		let addr = tap.insert_account("".sha3(), "").unwrap();
 		tap.unlock_account_permanently(addr, "".into()).unwrap();
 
-		let spec = new_test_authority();
+		let spec = new_test_snowwhite();
 		let engine = &*spec.engine;
 		let genesis_header = spec.genesis_header();
 		let mut db_result = get_temp_state_db();
@@ -361,14 +361,33 @@ mod tests {
 		let seal = engine.generate_seal(b.block(), Some(&tap)).unwrap();
 		assert!(b.try_seal(engine, seal).is_ok());
 	}
-
+	
 	#[test]
 	fn seals_internally() {
 		let tap = AccountProvider::transient_provider();
 		let authority = tap.insert_account("".sha3(), "").unwrap();
 
-		let engine = new_test_authority().engine;
+		let engine = new_test_snowwhite().engine;
 		assert!(!engine.is_sealer(&Address::default()).unwrap());
 		assert!(engine.is_sealer(&authority).unwrap());
+	}
+
+	#[test]
+	fn NEW_can_detect_invalid() {
+		let tap = AccountProvider::transient_provider();
+		let addr = tap.insert_account("notanauthority".sha3(), "").unwrap();
+		tap.unlock_account_permanently(addr, "".into()).unwrap();
+
+		let spec = new_test_snowwhite();
+		let engine = &*spec.engine;
+		let genesis_header = spec.genesis_header();
+		let mut db_result = get_temp_state_db();
+		let mut db = db_result.take();
+                spec.ensure_db_good(&mut db, &TrieFactory::new(TrieSpec::Secure)).unwrap();
+		let last_hashes = Arc::new(vec![genesis_header.hash()]);
+		let b = OpenBlock::new(engine, Default::default(), false, db, &genesis_header, last_hashes, addr, (3141562.into(), 31415620.into()), vec![]).unwrap();
+		let b = b.close_and_lock();
+		let seal = engine.generate_seal(b.block(), Some(&tap)).unwrap();
+		assert!(b.try_seal(engine, seal).is_err());
 	}
 }
