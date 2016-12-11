@@ -1,5 +1,6 @@
 import time
 
+# Customize churn parameters here
 DOWNTIME = 60
 COOLOFF = 60
 NUM_NODES = 20
@@ -17,11 +18,13 @@ def do_cmd(command, node, append=''):
 while 1:
     nodes = sample(allnodes, NUM_NODES)
     for node in nodes:
-        do_cmd("killall -9 parity &", node, ' &')
+        do_cmd("killall -9 parity &", node, ' &') # Kill Parity
     time.sleep(DOWNTIME)
     for node in nodes:
+        # Start Parity after downtime
         do_cmd('''/home/ubuntu/parity/target/release/parity daemon /home/ubuntu/pid --jsonrpc-apis "parity_set,parity,eth,parity_accounts,personal" -l info --jsonrpc-interface all --jsonrpc-hosts="all" --max-peers 200 --nat=upnp''', node)
     time.sleep(10)
     for node in nodes:
+        # Start mining script on nodes
         do_cmd('''nohup python /home/ubuntu/parity/pyrpc/parity.py </dev/null > /dev/null 2>&1 &''', node)
     time.sleep(COOLOFF)
