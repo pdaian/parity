@@ -236,12 +236,16 @@ impl Engine for SnowWhite {
 		let gas_limit_divisor = self.our_params.gas_limit_bound_divisor;
 		let min_gas = parent.gas_limit().clone() - parent.gas_limit().clone() / gas_limit_divisor;
 		let max_gas = parent.gas_limit().clone() + parent.gas_limit().clone() / gas_limit_divisor;
-		if header.gas_limit() <= &min_gas || header.gas_limit() >= &max_gas {
-			return Err(From::from(BlockError::InvalidGasLimit(OutOfBounds { min: Some(min_gas), max: Some(max_gas), found: header.gas_limit().clone() })));
+		if self.our_params.permissioned {
+			if header.gas_limit() != parent.gas_limit() {
+				// Enforce no adjustment on gas limit (to prevent gas-based attacks due to lack of gas based rules in block generation)
+				return Err(From::from(BlockError::InvalidGasLimit(OutOfBounds { min: Some(parent.gas_limit().clone()), max: Some(parent.gas_limit().clone()), found: header.gas_limit().clone() })));
+			}			
 		}
-		if self.our_params.permissioned & (header.gas_limit() != parent.gas_limit()) {
-			// Enforce no adjustment on gas limit (to prevent gas-based attacks due to lack of gas based rules in block generation)
-			return Err(From::from(BlockError::InvalidGasLimit(OutOfBounds { min: Some(parent.gas_limit().clone()), max: Some(parent.gas_limit().clone()), found: header.gas_limit().clone() })));			
+		else {
+			if header.gas_limit() <= &min_gas || header.gas_limit() >= &max_gas {
+				return Err(From::from(BlockError::InvalidGasLimit(OutOfBounds { min: Some(min_gas), max: Some(max_gas), found: header.gas_limit().clone() })));
+			}
 		}
 
 		// PoW check (similar to ETHHash, using SHA3 rather than memory hard function, modified as described in paper)
