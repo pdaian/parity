@@ -87,9 +87,16 @@ To mine in the background, the command would look something like:
 To mine with multiple processes, you may run the command multiple times.
 
 You should see output that looks like:
+{u'jsonrpc': u'2.0', u'result': u'0xba7757361234d58004753ad3b9bcfa8ae9e9e94dbbffb515168ed830c37d8b30', u'id': 83}
+{u'jsonrpc': u'2.0', u'result': u'0x2', u'id': 83}
+{u'jsonrpc': u'2.0', u'result': u'0x68418a1d93d8001d87b01eb955cdd93fff04c1409ce91d11a2f074fc3bf4da08', u'id': 83}
+{u'jsonrpc': u'2.0', u'result': u'0x3', u'id': 83}
 
+The first line in the alternating sequence means that you've generated and submitted a transaction.  The second
+shows the current latest blocknumber, in hex.  Seeing this second number increment means your system has mined a block.  This should
+be confirmed by viewing the output of the Parity command.
 
-If this is incrementing, congratulations, your instance is running successfully!
+If blocks are being mined, congratulations, your instance is running successfully!
 
 
 Running the Block Explorer
@@ -121,9 +128,11 @@ Connecting Multiple Nodes
     ``python automated_install.py [path to machine home directory] [IP of key distribution server above] [anchor enode]``
     The script assumes the presence of and packages on apt-get that have been tested on Ubuntu (AWS/14.04 image).
     Example arguments: ``python automated_install.py /home/ubuntu/ 172.31.13.94 enode://k93...``
+    You can also download this script from https://pdaian.com/automated_install.py
 4. After ``automated_install.py`` finishes on a node, you can confirm Parity is running on the node by running
     ``ps x | grep [p]arity``.
-5. To start generating transactions and mining blocks on a node, run ``python parity.py`` in the ``pyrpc`` subfolder.
+5. Before mining, make sure you run the peering script described in the next section, and it executes with no errors.
+6. To start generating transactions and mining blocks on a node, run ``python parity.py`` in the ``pyrpc`` subfolder.
     To mine in the background, the command would look something like:
     ``nohup python [path to]/parity/pyrpc/parity.py </dev/null > /dev/null 2>&1 &``
     To mine with multiple processes, you may run the command multiple times.
