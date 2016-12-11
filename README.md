@@ -66,11 +66,13 @@ To build Snow White on a single node (we call this first node the "anchor node" 
     (replace 0.0.0.0 in the RPC CORS domain with the public IP of your machine if you wish to use the block explorer feature (see below))
 
 You will know you are running SnowWhite correctly when you see something like this in the console:
+````
 2016-12-09 19:42:39 UTC Operating mode: active
 2016-12-09 19:42:39 UTC Configured for ProofOfStakeTest using SnowWhite engine
 2016-12-09 19:42:44 UTC Public node URL: enode://790...
+````
 
-You can also run SnowWhite as a daemon.  Simply add "daemon /tmp/pid" after the path to the Parity binary.
+You can also run SnowWhite as a daemon.  Simply add ``daemon /tmp/pid`` after the path to the Parity binary.
 
 To run with extended debug log information, change ``-l info`` to ``-l debug`` in the above command.  This is verbose and not
 generally recommended unless debugging network issues.
@@ -191,7 +193,10 @@ To gather the graphs and data in the final report, the following process was use
 9. Run "blockstats.py" in the "pyrpc" folder.  This will gather the blockchain statistics used in the first graphs.
    Preferably, do this on the same machine used to gather CPU/memory data (in case of blockchain forks), but any machine should do.
 10. For the average graphs, do the above on all nodes in your cluster.
-11. Process the resulting data with ``gather_resources.py
+11. Aggregate the resulting data with ``graphs/gather_all_data.py``
+12. Draw the graphs with ``graphs/draw_graphs.py``.  Data must be in the form of ``parity/graphs/data/[node ID]/chaindata`` (and
+    resources).  You must manually edit the nodes and/or top_nodes array (both are provided as an example) to include the node data
+    you want to use in the graph.
 12. Enjoy the graphs!
 
 
