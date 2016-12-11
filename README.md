@@ -58,11 +58,12 @@ For isolation we recommend running and building SnowWhite in its own account, as
 
 To build Snow White on a single node (we call this first node the "anchor node" in a multiple node system):
 
-- If you are not installing from tarball, clone snowwhite.  ``cd ~ && git clone https://github.com/pdaian/parity && cd parity && git checkout snowwhite``
-- Build snowwhite.  Run ``cargo build --release`` in the ``parity`` folder generated from either this tarball or the git clone above.
-- Copy the "skeleton files", including chain configuration.  From the ``parity/skeleton`` folder: ``cp -a . /home/[your user]``
+1. If you are not installing from tarball, clone snowwhite.  ``cd ~ && git clone https://github.com/pdaian/parity && cd parity && git checkout snowwhite``
+2. Build snowwhite.  Run ``cargo build --release`` in the ``parity`` folder generated from either this tarball or the git clone above.
+3. Run ``grep -ir /home/ubuntu`` in the ``parity/skeleton`` folder and replace any instances with your home directory.
+4. Copy the "skeleton files", including chain configuration.  From the ``parity/skeleton`` folder: ``cp -a . /home/[your user]``
     (cat ~/.parity/address to make sure this copied as well)
-- Run Parity using ``[path to parity folder] /target/release/parity --jsonrpc-apis "parity_set,parity,eth,parity_accounts,personal" -l info --rpccorsdomain "http://0.0.0.0:8000" --jsonrpc-interface all --jsonrpc-hosts="all" --max-peers 200``
+5. Run Parity using ``[path to parity folder] /target/release/parity --jsonrpc-apis "parity_set,parity,eth,parity_accounts,personal" -l info --rpccorsdomain "http://0.0.0.0:8000" --jsonrpc-interface all --jsonrpc-hosts="all" --max-peers 200``
     (replace 0.0.0.0 in the RPC CORS domain with the public IP of your machine if you wish to use the block explorer feature (see below))
 
 You will know you are running SnowWhite correctly when you see something like this in the console:
@@ -140,6 +141,12 @@ Connecting Multiple Nodes
     To mine in the background, the command would look something like:
     ``nohup python [path to]/parity/pyrpc/parity.py </dev/null > /dev/null 2>&1 &``
     To mine with multiple processes, you may run the command multiple times.
+
+
+**WARNING** : There is a bug in the newest version of Parity that sometimes makes block propagation fail due to network
+address translation faults.  The benchmarks in the paper were taken on an older version of master, which unfortunately
+does not build due to upstream changes.  If you encounter this issue at any point contact me for a resolution.  The bug
+has been reported to the Parity developers and a fix is in progress.
 
 
 Management - RPC and SSH
