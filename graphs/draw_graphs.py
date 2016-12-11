@@ -18,7 +18,7 @@ def init(nodeset):
     tx_s = {}
     byte_s = {}
 
-    max_len = 0
+    max_len = 200000
     mem = [0.0] * max_len
     cpu = [0.0] * max_len
     for node in nodes:
@@ -36,11 +36,11 @@ def init(nodeset):
             throughput_byte[int(block[2]) - int(time_factors[node])] += int(block[1])
         chaindata = open("data/"+ str(node) +"/resources").read().strip().splitlines()
         for dataline in chaindata:
-            timestamp = int(dataline.split(",")[0])
+            timestamp = int(float(dataline.split(",")[0]))
             cpu_used = float(dataline.split(",")[1])
             mem_used = float(dataline.split(",")[2])
             mem[timestamp - int(time_factors[node])] += mem_used
-            cpu[timestamp - int(time_factors[node])] += cpu
+            cpu[timestamp - int(time_factors[node])] += cpu_used
         # smooth out mem, cpu arrays by filling in missing data
         last_mem = 0.0
         last_cpu = 0.0
@@ -72,6 +72,8 @@ def init(nodeset):
 
     avg_throughput_tx = [avg_throughput_tx[i] / max(divisors[i], 1.0) for i in range(0, max_len)]
     avg_throughput_byte = [avg_throughput_byte[i] / max(divisors[i], 1.0) for i in range(0, max_len)]
+    cpu = [cpu[i] / max(divisors[i], 1.0) for i in range(0, max_len)]
+    mem = [mem[i] / max(divisors[i], 6.0) for i in range(0, max_len)]
 
 def draw_graph_one():
     global nodes
@@ -100,6 +102,18 @@ l1, = plt.plot(np.convolve(avg_throughput_tx[:6385], np.ones((60,))/60, mode='va
 plt.xlabel("Time since experiment start (s)")
 plt.ylabel("Throughput (tx/s)")
 plt.title("Average Transaction Throughput - Linear Scale")
+plt.show()
+
+l1, = plt.plot(np.convolve(cpu[:6385], np.ones((10,))/10, mode='valid'), label="tx/s throughput")
+plt.xlabel("Time since experiment start (s)")
+plt.ylabel("CPU (percent)")
+plt.title("Average CPU Usage")
+plt.show()
+
+l1, = plt.plot(np.convolve(mem[:6385], np.ones((10,))/10, mode='valid'), label="tx/s throughput")
+plt.xlabel("Time since experiment start (s)")
+plt.ylabel("Memory Usage (percent)")
+plt.title("Average Memory Usage")
 plt.show()
 
 
