@@ -18,52 +18,50 @@
 
 extern crate time;
 extern crate crypto;
-
-use ethkey::{recover, public_to_address};
+use std::sync::Weak;
+use util::*;
+use ethkey::{recover, public_to_address, Signature};
 use account_provider::AccountProvider;
 use block::*;
 use builtin::Builtin;
 use spec::CommonParams;
-use engines::Engine;
+use engines::{Engine, Seal};
 use env_info::EnvInfo;
 use error::{BlockError, Error};
 use evm::Schedule;
 use ethjson;
 use header::Header;
-use transaction::SignedTransaction;
 use std::process;
 use ethereum::ethash::Ethash;
 use self::crypto::digest::Digest;
 use self::crypto::sha3::Sha3;
-
-use util::*;
+use client::Client;
+use super::signer::EngineSigner;
+use super::validator_set::{ValidatorSet, new_validator_set};
 
 /// `SnowWhite` params.
 #[derive(Debug, PartialEq)]
 pub struct SnowWhiteParams {
 	/// Gas limit divisor.
 	pub gas_limit_bound_divisor: U256,
-	/// Block duration.
-	pub duration_limit: u64,
 	/// Valid signatories.
-	pub authorities: HashSet<Address>,
 	// Permissioned operation mode
 	permissioned: bool,
 	// Time interval, in seconds
 	time_interval: u64,
 	// Kappa (max allowable clock drift + network delay) TODO doublecheck proof spec, simulate allowable parameters
 	kappa: i64,
+	pub validators: ethjson::spec::ValidatorSet,
 }
 
 impl From<ethjson::spec::SnowWhiteParams> for SnowWhiteParams {
 	fn from(p: ethjson::spec::SnowWhiteParams) -> Self {
 		SnowWhiteParams {
 			gas_limit_bound_divisor: p.gas_limit_bound_divisor.into(),
-			duration_limit: p.duration_limit.into(),
-			authorities: p.authorities.into_iter().map(Into::into).collect::<HashSet<_>>(),
 			permissioned: true,
 			time_interval : 5,
 			kappa : 60,
+			validators: p.validators,
 		}
 	}
 }
@@ -72,10 +70,10 @@ impl From<ethjson::spec::SnowWhiteParams> for SnowWhiteParams {
 /// mainnet chains in the Olympic, Frontier and Homestead eras.
 pub struct SnowWhite {
 	params: CommonParams,
-	our_params: SnowWhiteParams,
+	gas_limit_bound_divisor: U256,
 	builtins: BTreeMap<Address, Builtin>,
-        account_provider: Mutex<Option<Arc<AccountProvider>>>,
-        password: RwLock<Option<String>>,
+	signer: EngineSigner,
+	validators: Box<ValidatorSet + Send + Sync>,
 }
 
 impl SnowWhite {
@@ -83,10 +81,10 @@ impl SnowWhite {
 	pub fn new(params: CommonParams, our_params: SnowWhiteParams, builtins: BTreeMap<Address, Builtin>) -> Self {
 		SnowWhite {
 			params: params,
-			our_params: our_params,
+			gas_limit_bound_divisor: our_params.gas_limit_bound_divisor,
 			builtins: builtins,
-			account_provider: Mutex::new(None),
-			password: RwLock::new(None),
+			validators: new_validator_set(our_params.validators),
+			signer: Default::default(),
 		}
 	}
 }
@@ -101,7 +99,7 @@ impl Engine for SnowWhite {
 	fn builtins(&self) -> &BTreeMap<Address, Builtin> { &self.builtins }
 
 	/// Additional engine-specific information for the user/developer concerning `header`.
-	fn extra_info(&self, _header: &Header) -> BTreeMap<String, String> { map!["signature".to_owned() => "todo".to_owned()] }
+	fn extra_info(&self, _header: &Header) -> BTreeMap<String, String> { map!["signature".to_owned() => "TODO".to_owned()] }
 
 	fn schedule(&self, _env_info: &EnvInfo) -> Schedule {
 		Schedule::new_homestead()
@@ -136,32 +134,25 @@ impl Engine for SnowWhite {
 		info!("[{}] Created new block from parent @ time {}.  Difficulty: {}, Timestamp: {}, #{}", time::get_time().sec, parent.timestamp(), header.difficulty(), header.timestamp(), header.number());
 	}
 
-	fn on_close_block(&self, _block: &mut ExecutedBlock) {}
-
 	fn is_sealer(&self, author: &Address) -> Option<bool> {
-		Some(self.our_params.authorities.contains(author))
+		Some(self.validators.contains(author))
 	}
 
 	/// Attempt to seal the block internally.
-	///
-	/// This operation is synchronous and may (quite reasonably) not be available, in which `false` will
-	/// be returned.
-        fn generate_seal(&self, block: &ExecutedBlock) -> Option<Vec<Bytes>> {
+	fn generate_seal(&self, block: &ExecutedBlock) -> Seal {
 		info!("Attempting to mine a block...");
 		trace!(target: "snowwhite", "generate_seal: Attempting to seal");
-		if let Some(ref ap) = *self.account_provider.lock() {
-			let header = block.header();
-			let message = header.bare_hash();
+		let header = block.header();
+		let author = header.author();
+		if self.validators.contains(author) {
 			// account should be pernamently unlocked, otherwise sealing will fail
-			if let Ok(signature) = ap.sign(*block.header().author(), self.password.read().clone(), message) {
-				return Some(vec![::rlp::encode(&(&*signature as &[u8])).to_vec()]);
+			if let Ok(signature) = self.signer.sign(header.bare_hash()) {
+				return Seal::Regular(vec![::rlp::encode(&(&H520::from(signature) as &[u8])).to_vec()]);
 			} else {
 				trace!(target: "snowwhite", "generate_seal: FAIL: accounts secret key unavailable");
 			}
-		} else {
-			trace!(target: "snowwhite", "generate_seal: FAIL: accounts not provided");
 		}
-		None
+		Seal::None
 	}
 
 	fn verify_block_basic(&self, header: &Header, _block: Option<&[u8]>) -> result::Result<(), Error> {
@@ -179,10 +170,10 @@ impl Engine for SnowWhite {
 		use rlp::{UntrustedRlp, View};
 
 		// check the signature is legit.
-		let sig = try!(UntrustedRlp::new(&header.seal()[0]).as_val::<H520>());
-		let signer = public_to_address(&try!(recover(&sig.into(), &header.bare_hash())));
-		if !self.our_params.authorities.contains(&signer) {
-			return try!(Err(BlockError::InvalidSeal));
+		let sig = UntrustedRlp::new(&header.seal()[0]).as_val::<H520>()?;
+		let signer = public_to_address(&recover(&sig.into(), &header.bare_hash())?);
+		if !self.validators.contains(&signer) {
+			return Err(BlockError::InvalidSeal)?;
 		}
 
 		let timestamp = header.timestamp().clone();
@@ -233,7 +224,7 @@ impl Engine for SnowWhite {
 		if (header.difficulty().clone()) != appropriate_difficulty {
 			return Err(From::from(BlockError::InvalidDifficulty(Mismatch { expected: appropriate_difficulty, found: *header.difficulty() })))
 		}
-		let gas_limit_divisor = self.our_params.gas_limit_bound_divisor;
+		let gas_limit_divisor = self.gas_limit_bound_divisor;
 		let min_gas = parent.gas_limit().clone() - parent.gas_limit().clone() / gas_limit_divisor;
 		let max_gas = parent.gas_limit().clone() + parent.gas_limit().clone() / gas_limit_divisor;
 		if self.our_params.permissioned {
@@ -266,32 +257,16 @@ impl Engine for SnowWhite {
 		Ok(())
 	}
 
-	fn verify_transaction_basic(&self, t: &SignedTransaction, _header: &Header) -> result::Result<(), Error> {
-		// This is the same as authority chain 
-		try!(t.check_low_s());
-		Ok(())
+	fn register_client(&self, client: Weak<Client>) {
+		self.validators.register_contract(client);
 	}
 
-	fn verify_transaction(&self, t: &SignedTransaction, _header: &Header) -> Result<(), Error> {
-		// This is the same as authority chain 
-		t.sender().map(|_|()) // Perform EC recovery and cache sender
+	fn set_signer(&self, ap: Arc<AccountProvider>, address: Address, password: String) {
+		self.signer.set(ap, address, password);
 	}
 
-        fn set_signer(&self, _address: Address, password: String) {
-                *self.password.write() = Some(password);
-        }
-
-        fn register_account_provider(&self, ap: Arc<AccountProvider>) {
-                *self.account_provider.lock() = Some(ap);
-        }
-
-}
-
-impl Header {
-	/// Get the none field of the header.
-	pub fn signature(&self) -> H520 {
-		// This is the same as authority chain
-		::rlp::decode(&self.seal()[0])
+	fn sign(&self, hash: H256) -> Result<Signature, Error> {
+		self.signer.sign(hash).map_err(Into::into)
 	}
 }
 
@@ -299,13 +274,14 @@ impl Header {
 mod tests {
 	use util::*;
 	use block::*;
-	use util::trie::TrieSpec;
 	use env_info::EnvInfo;
 	use error::{BlockError, Error};
 	use tests::helpers::*;
 	use account_provider::AccountProvider;
+	use ethkey::Secret;
 	use header::Header;
 	use spec::Spec;
+	use engines::Seal;
 
 	/// Create a new test chain spec with `SnowWhite` consensus engine.
 	fn new_test_snowwhite() -> Spec {
@@ -363,50 +339,29 @@ mod tests {
 	#[test]
 	fn can_generate_seal() {
 		let tap = AccountProvider::transient_provider();
-		let addr = tap.insert_account("".sha3(), "").unwrap();
-		tap.unlock_account_permanently(addr, "".into()).unwrap();
+		let addr = tap.insert_account(Secret::from_slice(&"".sha3()).unwrap(), "").unwrap();
 
 		let spec = new_test_snowwhite();
 		let engine = &*spec.engine;
-		engine.set_signer(addr, "".into()); 
-		engine.register_account_provider(Arc::new(tap));
+		engine.set_signer(Arc::new(tap), addr, "".into());
 		let genesis_header = spec.genesis_header();
 		let mut db_result = get_temp_state_db();
-		let mut db = db_result.take();
-                spec.ensure_db_good(&mut db, &TrieFactory::new(TrieSpec::Secure)).unwrap();
+		let db = spec.ensure_db_good(db_result.take(), &Default::default()).unwrap();
 		let last_hashes = Arc::new(vec![genesis_header.hash()]);
 		let b = OpenBlock::new(engine, Default::default(), false, db, &genesis_header, last_hashes, addr, (3141562.into(), 31415620.into()), vec![]).unwrap();
 		let b = b.close_and_lock();
-		let seal = engine.generate_seal(b.block()).unwrap();
-		assert!(b.try_seal(engine, seal).is_ok());
+		if let Seal::Regular(seal) = engine.generate_seal(b.block()) {
+			assert!(b.try_seal(engine, seal).is_ok());
+		}
 	}
-	
+
 	#[test]
 	fn seals_internally() {
 		let tap = AccountProvider::transient_provider();
-		let authority = tap.insert_account("".sha3(), "").unwrap();
+		let authority = tap.insert_account(Secret::from_slice(&"".sha3()).unwrap(), "").unwrap();
 
 		let engine = new_test_snowwhite().engine;
 		assert!(!engine.is_sealer(&Address::default()).unwrap());
 		assert!(engine.is_sealer(&authority).unwrap());
-	}
-
-	#[test]
-	fn NEW_can_detect_invalid() {
-		let tap = AccountProvider::transient_provider();
-		let addr = tap.insert_account("notanauthority".sha3(), "").unwrap();
-		tap.unlock_account_permanently(addr, "".into()).unwrap();
-
-		let spec = new_test_snowwhite();
-		let engine = &*spec.engine;
-		let genesis_header = spec.genesis_header();
-		let mut db_result = get_temp_state_db();
-		let mut db = db_result.take();
-                spec.ensure_db_good(&mut db, &TrieFactory::new(TrieSpec::Secure)).unwrap();
-		let last_hashes = Arc::new(vec![genesis_header.hash()]);
-		let b = OpenBlock::new(engine, Default::default(), false, db, &genesis_header, last_hashes, addr, (3141562.into(), 31415620.into()), vec![]).unwrap();
-		let b = b.close_and_lock();
-		let seal = engine.generate_seal(b.block(), Some(&tap)).unwrap();
-		assert!(b.try_seal(engine, seal).is_err());
 	}
 }
