@@ -5,7 +5,7 @@
 			"params": {
 				"gasLimitBoundDivisor": "0x0400",
 				"durationLimit": "1",
-				"authorities" : [					"0x00b086af6b97b594d0b4fe6e507fbb13d8326d94",
+				"validators" : { "list":  [					"0x00b086af6b97b594d0b4fe6e507fbb13d8326d94",
 "0xbfbd48cb48c61db8a69724f60239bf7c9cbab986",
 					"0x005e477bfb42092d78db3aa8568f2fa6bae440e6",
 					"0x00d16ac8dec0a7954439011a49bf4fdf569b5730",
@@ -106,7 +106,7 @@
 					"0x00c03cd31aaace6f8c89e74aa4488a67287f60bf",
 					"0x008946b114ca0e25e7d79cd730bd726785ca5167",
 					"0x00190c0eeb92a52f8f8eea4ddd37e389a949f5dc"
-				]
+				] }
 			}
 		}
 	},

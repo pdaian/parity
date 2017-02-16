@@ -158,6 +158,9 @@ impl Engine for SnowWhite {
 				trace!(target: "snowwhite", "generate_seal: FAIL: accounts secret key unavailable");
 			}
 		}
+		else {
+			info!("Fail!  No sealer available.");
+		}
 		Seal::None
 	}
 

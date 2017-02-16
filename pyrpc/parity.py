@@ -18,7 +18,7 @@ def do_request(payload):
 
     return response
 
-addr = open('/home/ubuntu/.parity/address').read().strip()
+addr = open('/home/ubuntu/.local/share/io.parity.ethereum/address').read().strip()
 params = [{
 			"from": addr,
                         "to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
