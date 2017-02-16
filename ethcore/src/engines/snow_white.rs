@@ -74,6 +74,9 @@ pub struct SnowWhite {
 	builtins: BTreeMap<Address, Builtin>,
 	signer: EngineSigner,
 	validators: Box<ValidatorSet + Send + Sync>,
+        permissioned: bool,
+        time_interval: u64,
+        kappa: i64,
 }
 
 impl SnowWhite {
@@ -85,6 +88,9 @@ impl SnowWhite {
 			builtins: builtins,
 			validators: new_validator_set(our_params.validators),
 			signer: Default::default(),
+			permissioned: our_params.permissioned,
+			time_interval: our_params.time_interval,
+			kappa: our_params.kappa,
 		}
 	}
 }

@@ -163,8 +163,8 @@ impl Spec {
 			ethjson::spec::Engine::InstantSeal => Arc::new(InstantSeal::new(params, builtins)),
 			ethjson::spec::Engine::Ethash(ethash) => Arc::new(ethereum::Ethash::new(params, From::from(ethash.params), builtins)),
 			ethjson::spec::Engine::BasicAuthority(basic_authority) => Arc::new(BasicAuthority::new(params, From::from(basic_authority.params), builtins)),
+			ethjson::spec::Engine::SnowWhite(snow_white) => Arc::new(SnowWhite::new(params, From::from(snow_white.params), builtins)),
 			ethjson::spec::Engine::AuthorityRound(authority_round) => AuthorityRound::new(params, From::from(authority_round.params), builtins).expect("Failed to start AuthorityRound consensus engine."),
-			ethjson::spec::Engine::SnowWhite(snow_white) => SnowWhite::new(params, From::from(snow_white.params), builtins).expect("Failed to start SnowWhite consensus engine."),
 			ethjson::spec::Engine::Tendermint(tendermint) => Tendermint::new(params, From::from(tendermint.params), builtins).expect("Failed to start the Tendermint consensus engine."),
 		}
 	}
