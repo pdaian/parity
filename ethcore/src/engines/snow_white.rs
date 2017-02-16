@@ -115,6 +115,9 @@ impl Engine for SnowWhite {
 		// Adjust the timestamp to reflect 1 timestep every 5s
 		let current_timestamp = header.timestamp().clone();
 		let adjusted_timestamp = current_timestamp - (current_timestamp % self.time_interval); 
+		if (adjusted_timestamp == parent.timestamp()) {
+			return;
+		}
 		header.set_timestamp(adjusted_timestamp);
 
 		// Get expected difficulty and populate header
@@ -151,6 +154,23 @@ impl Engine for SnowWhite {
 		let header = block.header();
 		let author = header.author();
 		if self.validators.contains(author) {
+               // PoW check (similar to ETHHash, using SHA3 rather than memory hard function, modified as described in paper)
+                // First we SHA Unix Time || pub key || h0
+                let time_string = &header.timestamp().clone().to_string(); // TODO fix reliance on consistency of rust string method
+                let signer_string = &header.author().clone().to_string();
+                let h0_string = &(if self.permissioned { 0.to_string() } else { 1.to_string() });  // TODO h0 gather to generalize to permissionless
+                let mut hasher = Sha3::sha3_256();
+                hasher.input_str(time_string);
+                hasher.input_str(signer_string);
+                hasher.input_str(h0_string);
+                let hex = hasher.result_str();
+                let difficulty = Ethash::boundary_to_difficulty(&H256::from_str(&hex).unwrap()) * U256::from(100000); // convert result to difficulty
+                info!("Attempting to seal... {}", hex);
+
+                if &difficulty < header.difficulty() { // make sure header has validated correctly
+			return Seal::None
+                }
+
 			info!("Attempting to mine a block 2...");
 			// account should be pernamently unlocked, otherwise sealing will fail
 			if let Ok(signature) = self.signer.sign(header.bare_hash()) {
@@ -170,6 +190,7 @@ impl Engine for SnowWhite {
 	fn verify_block_basic(&self, header: &Header, _block: Option<&[u8]>) -> result::Result<(), Error> {
 		// check the seal fields.
 		// TODO: pull this out into common code.
+
 		if header.seal().len() != self.seal_fields() {
 			return Err(From::from(BlockError::InvalidSealArity(
 				Mismatch { expected: self.seal_fields(), found: header.seal().len() }
