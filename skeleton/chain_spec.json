@@ -1,12 +1,14 @@
 {
-	"name": "ProofOfStakeTest",
+	"name": "TestSnowWhite",
 	"engine": {
 		"SnowWhite": {
 			"params": {
 				"gasLimitBoundDivisor": "0x0400",
-				"durationLimit": "1",
-				"validators" : { "list":  [					"0x00b086af6b97b594d0b4fe6e507fbb13d8326d94",
-"0xbfbd48cb48c61db8a69724f60239bf7c9cbab986",
+				"durationLimit": "0x0d",
+				"validators": {
+					"list": [
+					"0x00b086af6b97b594d0b4fe6e507fbb13d8326d94",
+					"0xbfbd48cb48c61db8a69724f60239bf7c9cbab986",
 					"0x005e477bfb42092d78db3aa8568f2fa6bae440e6",
 					"0x00d16ac8dec0a7954439011a49bf4fdf569b5730",
 					"0x00923368a1248f40622612e6422c4ab7225f515c",
@@ -105,8 +107,8 @@
 					"0x00f33e17e25d67cb84159c99d240b0ebf0ffaca2",
 					"0x00c03cd31aaace6f8c89e74aa4488a67287f60bf",
 					"0x008946b114ca0e25e7d79cd730bd726785ca5167",
-					"0x00190c0eeb92a52f8f8eea4ddd37e389a949f5dc"
-				] }
+					"0x00190c0eeb92a52f8f8eea4ddd37e389a949f5dc" ]
+				}
 			}
 		}
 	},
@@ -118,25 +120,17 @@
 	},
 	"genesis": {
 		"seal": {
-			"generic": {
-				"fields": 1,
-				"rlp": "0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa"
-			}
+			"generic": "0xc180"
 		},
-		"difficulty": "0x20000",
+		"difficulty": "0x2",
 		"author": "0x0000000000000000000000000000000000000000",
 		"timestamp": "0x00",
 		"parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
 		"extraData": "0x",
-		"gasLimit": "0x999999999999999999999999999999999999999"
+		"gasLimit": "0x999999999999999999999999999999999999999999999"
 	},
 	"accounts": {
-		"0000000000000000000000000000000000000001": { "balance": "1", "nonce": "1048576", "builtin": { "name": "ecrecover", "pricing": { "linear": { "base": 3000, "word": 0 } } } },
-		"0000000000000000000000000000000000000002": { "balance": "1", "nonce": "1048576", "builtin": { "name": "sha256", "pricing": { "linear": { "base": 60, "word": 12 } } } },
-		"0000000000000000000000000000000000000003": { "balance": "1", "nonce": "1048576", "builtin": { "name": "ripemd160", "pricing": { "linear": { "base": 600, "word": 120 } } } },
-		"0000000000000000000000000000000000000004": { "balance": "1", "nonce": "1048576", "builtin": { "name": "identity", "pricing": { "linear": { "base": 15, "word": 3 } } } },
 		"bfbd48cb48c61db8a69724f60239bf7c9cbab986": { "balance": "1606938044258990275541962092341162602522202993782792835301376", "nonce": "1048576" },
-		"0xbfbd48cb48c61db8a69724f60239bf7c9cbab986": { "balance": "1606938044258990275541962092341162602522202993782792835301376", "nonce": "1048576" },
 		"0x005e477bfb42092d78db3aa8568f2fa6bae440e6": { "balance": "1606938044258990275541962092341162602522202993782792835301376", "nonce": "1048576" },
 		"0x00d16ac8dec0a7954439011a49bf4fdf569b5730": { "balance": "1606938044258990275541962092341162602522202993782792835301376", "nonce": "1048576" },
 		"0x00b086af6b97b594d0b4fe6e507fbb13d8326d94": { "balance": "1606938044258990275541962092341162602522202993782792835301376", "nonce": "1048576" },

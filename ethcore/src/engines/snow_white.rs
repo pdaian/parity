@@ -151,10 +151,13 @@ impl Engine for SnowWhite {
 		let header = block.header();
 		let author = header.author();
 		if self.validators.contains(author) {
+			info!("Attempting to mine a block 2...");
 			// account should be pernamently unlocked, otherwise sealing will fail
 			if let Ok(signature) = self.signer.sign(header.bare_hash()) {
+				info!("Attempting to mine a block 3...");
 				return Seal::Regular(vec![::rlp::encode(&(&H520::from(signature) as &[u8])).to_vec()]);
 			} else {
+				info!("Attempting to mine a block 4...");
 				trace!(target: "snowwhite", "generate_seal: FAIL: accounts secret key unavailable");
 			}
 		}
@@ -210,6 +213,9 @@ impl Engine for SnowWhite {
                 if timestamp == parent_timestamp {
                         return try!(Err(BlockError::InvalidSeal));
                 }
+		else {
+			info!("Valid!!");
+		}	
 
 		// Make sure that the timestamp is within the kappa bound TODO unit test this
 		let signed_curr_time = time::get_time().sec as i64;
@@ -259,6 +265,7 @@ impl Engine for SnowWhite {
 		hasher.input_str(h0_string);
 		let hex = hasher.result_str();
 	        let difficulty = Ethash::boundary_to_difficulty(&H256::from_str(&hex).unwrap()) * U256::from(100000); // convert result to difficulty
+		info!("Attempting to seal... {}", hex);
 
                 if &difficulty < header.difficulty() { // make sure header has validated correctly
                         return Err(From::from(BlockError::InvalidProofOfWork(OutOfBounds { min: Some(header.difficulty().clone()), max: None, found: difficulty })));
