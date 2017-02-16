@@ -17,7 +17,7 @@
 //! Snow White params deserialization.
 
 use uint::Uint;
-use hash::Address;
+use super::ValidatorSet;
 
 /// Snow White params deserialization.
 #[derive(Debug, PartialEq, Deserialize)]
@@ -29,7 +29,7 @@ pub struct SnowWhiteParams {
 	#[serde(rename="durationLimit")]
 	pub duration_limit: Uint,
 	/// Valid authorities
-	pub authorities: Vec<Address>,
+        pub validators: ValidatorSet,
 }
 
 /// Snow White engine deserialization.
@@ -50,7 +50,10 @@ mod tests {
 			"params": {
 				"gasLimitBoundDivisor": "0x0400",
 				"durationLimit": "0x0d",
-				"authorities" : ["0xc6d9d2cd449a754c494264e1809c50e34d64562b"]
+				"validators" : {
+					"list": ["0xc6d9d2cd449a754c494264e1809c50e34d64562b"]
+				}
+
 			}
 		}"#;
 
