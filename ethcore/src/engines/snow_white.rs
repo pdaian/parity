@@ -114,7 +114,7 @@ impl Engine for SnowWhite {
 	fn populate_from_parent(&self, header: &mut Header, parent: &Header, gas_floor_target: U256, _gas_ceil_target: U256) {
 		// Adjust the timestamp to reflect 1 timestep every 5s
 		let current_timestamp = header.timestamp().clone();
-		let adjusted_timestamp = current_timestamp - (current_timestamp % self.our_params.time_interval); 
+		let adjusted_timestamp = current_timestamp - (current_timestamp % self.time_interval); 
 		header.set_timestamp(adjusted_timestamp);
 
 		// Get expected difficulty and populate header
@@ -123,9 +123,9 @@ impl Engine for SnowWhite {
 
 		// Standard gas adjustment in permissionless setting, otherwise stick with hardcoded parameter
 		header.set_gas_limit({
-			if !self.our_params.permissioned {
+			if !self.permissioned {
 				let gas_limit = parent.gas_limit().clone();
-				let bound_divisor = self.our_params.gas_limit_bound_divisor;
+				let bound_divisor = self.gas_limit_bound_divisor;
 				if gas_limit < gas_floor_target {
 					min(gas_floor_target, gas_limit + gas_limit / bound_divisor - 1.into())
 				} else {
@@ -184,7 +184,7 @@ impl Engine for SnowWhite {
 
 		let timestamp = header.timestamp().clone();
 		// Make sure timestamp represents a valid seal
-		if timestamp % self.our_params.time_interval != 0 {
+		if timestamp % self.time_interval != 0 {
 			return try!(Err(BlockError::InvalidSeal));
 		}
 
@@ -219,7 +219,7 @@ impl Engine for SnowWhite {
 		}
 		if (signed_curr_time - signed_parent_time).abs() < 30 { // TODO bootstrap checkpoints
 			// We only care about kappa if we're syncd to head; check this by checking parent block timestamp TODO proof interaction here?
-			if (signed_curr_time - signed_header_time).abs() > self.our_params.kappa {
+			if (signed_curr_time - signed_header_time).abs() > self.kappa {
 				process::exit(68);
 				return try!(Err(BlockError::InvalidSeal));
 			}
@@ -233,7 +233,7 @@ impl Engine for SnowWhite {
 		let gas_limit_divisor = self.gas_limit_bound_divisor;
 		let min_gas = parent.gas_limit().clone() - parent.gas_limit().clone() / gas_limit_divisor;
 		let max_gas = parent.gas_limit().clone() + parent.gas_limit().clone() / gas_limit_divisor;
-		if self.our_params.permissioned {
+		if self.permissioned {
 			if header.gas_limit() != parent.gas_limit() {
 				// Enforce no adjustment on gas limit (to prevent gas-based attacks due to lack of gas based rules in block generation)
 				return Err(From::from(BlockError::InvalidGasLimit(OutOfBounds { min: Some(parent.gas_limit().clone()), max: Some(parent.gas_limit().clone()), found: header.gas_limit().clone() })));
@@ -249,7 +249,7 @@ impl Engine for SnowWhite {
 		// First we SHA Unix Time || pub key || h0
 		let time_string = &header.timestamp().clone().to_string(); // TODO fix reliance on consistency of rust string method
 		let signer_string = &header.author().clone().to_string();
-		let h0_string = &(if self.our_params.permissioned { 0.to_string() } else { 1.to_string() });  // TODO h0 gather to generalize to permissionless
+		let h0_string = &(if self.permissioned { 0.to_string() } else { 1.to_string() });  // TODO h0 gather to generalize to permissionless
 		let mut hasher = Sha3::sha3_256();
 		hasher.input_str(time_string);
 		hasher.input_str(signer_string);
